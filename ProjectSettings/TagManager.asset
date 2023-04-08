@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Link
   - Eater
+  - Rope
+  - RedRope
   layers:
   - Default
   - TransparentFX

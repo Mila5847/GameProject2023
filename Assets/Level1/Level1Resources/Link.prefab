@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6902093484529652198}
   - component: {fileID: 5478214894109881531}
   m_Layer: 0
-  m_Name: LinkC
+  m_Name: Link
   m_TagString: Link
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6369429770895292078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.1388, y: -6.5575, z: 0}
-  m_LocalScale: {x: 0.11004064, y: 0.3, z: 1}
+  m_LocalPosition: {x: -8.1801, y: -6.6012, z: 0}
+  m_LocalScale: {x: 0.19250794, y: 0.21261, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
