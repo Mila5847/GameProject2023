@@ -8,6 +8,8 @@ TagManager:
   - Eater
   - Rope
   - RedRope
+  - Trampoline
+  - TrampolineDown
   layers:
   - Default
   - TransparentFX

@@ -62,7 +62,7 @@ public class RopeCut : MonoBehaviour
     private IEnumerator FadeMarker(GameObject marker)
     {
         SpriteRenderer renderer = marker.GetComponent<SpriteRenderer>();
-        float timer = 0f;
+        float timer = 0.04f;
 
         // Fade in the marker
         while (timer < fadeTime)
@@ -77,7 +77,7 @@ public class RopeCut : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration - 2f * fadeTime);
 
         // Fade out the marker
-        timer = 0f;
+        timer = 0.04f;
         while (timer < fadeTime)
         {
             float alpha = Mathf.Lerp(0.2f, 0f, timer / fadeTime);
