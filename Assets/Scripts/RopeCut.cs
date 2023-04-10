@@ -47,7 +47,6 @@ public class RopeCut : MonoBehaviour
             GameObject marker = Instantiate(markerPrefab, clickPosition, Quaternion.identity);
             StartCoroutine(FadeMarker(marker));
 
-            //Spawning ray at point of mouse position, ray is async pointer
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if(hit.collider != null)
             {
@@ -67,8 +66,8 @@ public class RopeCut : MonoBehaviour
         // Fade in the marker
         while (timer < fadeTime)
         {
-            float alpha = Mathf.Lerp(0f, 0.2f, timer / fadeTime);
-            renderer.color = new Color(1f, 0f, 0f, alpha);
+            float fade = Mathf.Lerp(0f, 0.4f, timer / fadeTime);
+            renderer.color = new Color(1f, 0f, 0f, fade);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -80,8 +79,8 @@ public class RopeCut : MonoBehaviour
         timer = 0.04f;
         while (timer < fadeTime)
         {
-            float alpha = Mathf.Lerp(0.2f, 0f, timer / fadeTime);
-            renderer.color = new Color(1f, 0f, 0f, alpha);
+            float fade = Mathf.Lerp(0.4f, 0f, timer / fadeTime);
+            renderer.color = new Color(1f, 0f, 0f, fade);
             timer += Time.deltaTime;
             yield return null;
         }

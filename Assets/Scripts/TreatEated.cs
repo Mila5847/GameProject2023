@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class TreatEated : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public Sprite closedMouth;
+    public Sprite openedMouth;
+    private SpriteRenderer spriteRenderer;
+
+    void Start()
     {
-        // Check if the other object is Object A
-        if (other.gameObject.CompareTag("Player"))
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = closedMouth;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Meat"))
         {
-            // Destroy Object A
-            Destroy(other.gameObject);
+            spriteRenderer.sprite = openedMouth;
+            Destroy(collision.gameObject);
+            Invoke("CloseMouth", 0.3f);
         }
+    }
+
+    void CloseMouth()
+    {
+        spriteRenderer.sprite = closedMouth;
     }
 }
