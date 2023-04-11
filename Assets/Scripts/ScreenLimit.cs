@@ -36,7 +36,7 @@ public class ScreenLimit : MonoBehaviour
         if (pos.y <= bottom)
         {
             pos.y = bottom; // Set the position to the bottom limit
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
         }
         else if (pos.y >= top)
         {
