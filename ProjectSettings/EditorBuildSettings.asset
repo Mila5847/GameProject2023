@@ -9,9 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Menu/Start Scene.unity
-    guid: c1656b0f7c1453143920ef14296b9904
-  - enabled: 1
-    path: Assets/Menu/LevelSelector.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/UselessScene/LevelSelector.unity
     guid: db4b3c8fd17ab2d42a1c88807f9ee96d
+  - enabled: 1
+    path: Assets/StartMenu/StartMenu.unity
+    guid: aa83ac893fdf98a4a85c72451d478e58
+  - enabled: 1
+    path: Assets/Cainos/Pixel Art Top Down - Basic/Scene/SC Pixel Art Top Down -
+      Basic.unity
+    guid: 86e89bd9e4a9c5245a015cf17e3c0aae
   m_configObjects: {}
