@@ -697,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 1392376673}
   linkPrefab: {fileID: 6369429770895292078, guid: 4f3940a684e81454eacb453f43e47a1e, type: 3}
-  links: 30
+  links: 25
   weight: {fileID: 2110605499}
 --- !u!50 &550280139
 Rigidbody2D:
@@ -786,7 +786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550280137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1008, y: 1.6408, z: 0}
+  m_LocalPosition: {x: -2.48, y: 3.53, z: 0}
   m_LocalScale: {x: 0.8343059, y: 0.7977403, z: 0.7207677}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -866,13 +866,15 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6345973947618921439, guid: c13263f1f05170f4e849875cee5c46d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020119765090098761, guid: c13263f1f05170f4e849875cee5c46d0, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6345973947618921439, guid: c13263f1f05170f4e849875cee5c46d0, type: 3}
-    - {fileID: 9020119765090098761, guid: c13263f1f05170f4e849875cee5c46d0, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -949,7 +951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &673940081
 Animator:
   serializedVersion: 5
@@ -1660,6 +1662,7 @@ GameObject:
   - component: {fileID: 988881561}
   - component: {fileID: 988881563}
   - component: {fileID: 988881562}
+  - component: {fileID: 988881564}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -2367,6 +2370,51 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!61 &988881564
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988881560}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.5, y: -3.6874177}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 0.6251645}
+  m_EdgeRadius: 0
 --- !u!1 &1133760851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1984335057297905004, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
@@ -3136,7 +3184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 1509420970}
   linkPrefab: {fileID: 6369429770895292078, guid: e1788647ecd8c744e9ca763541645fab, type: 3}
-  links: 20
+  links: 15
   weight: {fileID: 2110605499}
 --- !u!50 &1665126035
 Rigidbody2D:
@@ -3225,7 +3273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665126033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.4008, y: 2.9608, z: 0}
+  m_LocalPosition: {x: -6.99, y: 2.53, z: 0}
   m_LocalScale: {x: 0.78383446, y: 0.7497984, z: 0.6699218}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3546,13 +3594,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133760851}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f41317c4c0ddae548b8541410041bcb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   top: 6
-  bottom: -4
+  bottom: -5
   left: -10
   right: 9
 --- !u!1001 &609065090509119890
@@ -3593,7 +3641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5318812479015835188, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.09
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 5318812479015835188, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       propertyPath: m_LocalPosition.y

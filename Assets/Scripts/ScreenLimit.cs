@@ -36,11 +36,12 @@ public class ScreenLimit : MonoBehaviour
         if (pos.y <= bottom)
         {
             pos.y = bottom; // Set the position to the bottom limit
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
         }
         else if (pos.y >= top)
         {
             pos.y = top; // Set the position to the top limit
+            SceneManager.LoadScene("GameOver");
         }
 
         // Update the position of the game object

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class TreatEated : MonoBehaviour
@@ -21,6 +23,7 @@ public class TreatEated : MonoBehaviour
             spriteRenderer.sprite = openedMouth;
             Destroy(collision.gameObject);
             Invoke("CloseMouth", 0.3f);
+            //SceneManager.LoadScene("Success");
         }
     }
 
