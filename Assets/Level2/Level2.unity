@@ -531,7 +531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550280137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.48, y: 3.53, z: 0}
+  m_LocalPosition: {x: -0.48, y: 3.1, z: 0}
   m_LocalScale: {x: 0.8343059, y: 0.7977403, z: 0.7207677}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2996,7 +2996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665126033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.99, y: 2.53, z: 0}
+  m_LocalPosition: {x: -4.13, y: 2.46, z: 0}
   m_LocalScale: {x: 0.78383446, y: 0.7497984, z: 0.6699218}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3200,6 +3200,11 @@ MonoBehaviour:
   bottom: -5
   left: -10
   right: 9
+--- !u!4 &2110605509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5318812479015835188, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+  m_PrefabInstance: {fileID: 609065090509119890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &609065090509119890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3213,9 +3218,21 @@ PrefabInstance:
       value: meat
       objectReference: {fileID: 0}
     - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1440602482}
+    - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2110605502}
+    - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      propertyPath: objectToMove
+      value: 
+      objectReference: {fileID: 2110605509}
     - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       propertyPath: topRectangle
       value: 
@@ -3224,6 +3241,10 @@ PrefabInstance:
       propertyPath: trampolineUp
       value: 
       objectReference: {fileID: 673940080}
+    - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 1440602486}
     - target: {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       propertyPath: bottomRectangle
       value: 
