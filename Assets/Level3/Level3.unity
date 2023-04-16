@@ -317,6 +317,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6987779295947782262, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4617235055480155192, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
     m_RemovedGameObjects: []
@@ -325,6 +329,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1984335057297905004, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1224137768}
+    - targetCorrespondingSourceObject: {fileID: 1984335057297905004, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1224137775}
   m_SourcePrefab: {fileID: 100100000, guid: 9098dbf1def8f3b40923553c131dff42, type: 3}
 --- !u!1 &461912746
 GameObject:
@@ -758,6 +765,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ee2326a100b68438350b866b1b0729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1224137775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224137767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1ac03d6d18a654cbf2a79d16d029e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333757690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,10 +1076,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leafPrefabs:
   - {fileID: 953028067202117817, guid: 5340a450a125a2c44a9c20a60202cf8f, type: 3}
-  - {fileID: 355025839789536442, guid: c97ac4b6b4dcf7041b18ddce2278e844, type: 3}
-  interval: 1.5
   minDistance: -8
   maxDistance: 8
+  interval: 2
 --- !u!4 &1779214126
 Transform:
   m_ObjectHideFlags: 0
@@ -1291,14 +1309,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.19494155, y: 1.8362291}
-      - {x: -1.1757984, y: 1.7285686}
+    - - {x: 0.19494155, y: 0.7254554}
+      - {x: -0.71297663, y: 0.98805285}
       - {x: -1.3877625, y: -0.45345587}
       - {x: -1.4006824, y: -1.9500479}
       - {x: -1.0375545, y: -2.7082024}
       - {x: 0.7473736, y: -2.503669}
       - {x: 1.3963721, y: -1.0865582}
-      - {x: 1.2943434, y: 1.0446787}
+      - {x: 1.2943434, y: 0.6744208}
   m_UseDelaunayMesh: 0
 --- !u!212 &2076460733
 SpriteRenderer:

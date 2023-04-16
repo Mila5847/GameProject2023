@@ -44,8 +44,8 @@ public class RopeCut : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GameObject marker = Instantiate(markerPrefab, clickPosition, Quaternion.identity);
-            StartCoroutine(FadeMarker(marker));
+            GameObject mouse = Instantiate(markerPrefab, clickPosition, Quaternion.identity);
+            StartCoroutine(FadeMouse(mouse));
 
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if(hit.collider != null)
@@ -58,12 +58,12 @@ public class RopeCut : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeMarker(GameObject marker)
+    private IEnumerator FadeMouse(GameObject marker)
     {
         SpriteRenderer renderer = marker.GetComponent<SpriteRenderer>();
         float timer = 0.04f;
 
-        // Fade in the marker
+        // Fade in the mouse
         while (timer < fadeTime)
         {
             float fade = Mathf.Lerp(0f, 0.4f, timer / fadeTime);
@@ -75,7 +75,7 @@ public class RopeCut : MonoBehaviour
         // Wait for the duration
         yield return new WaitForSecondsRealtime(duration - 2f * fadeTime);
 
-        // Fade out the marker
+        // Fade out the mouse
         timer = 0.04f;
         while (timer < fadeTime)
         {
