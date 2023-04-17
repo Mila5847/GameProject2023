@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,15 +11,21 @@ public class NavigationPath : MonoBehaviour
     public KeyCode previousLevelKey = KeyCode.LeftArrow;
     public float transitionDuration = 4.5f;
 
+    public GameObject waypoint1;
+    public GameObject waypoint2;
+    public GameObject waypoint3;
+    public GameObject waypoint4;
+
+
     private int currentLevelIndex = 1;
     private bool isTransitioning = false;
     private Vector3 targetPosition;
 
     private void Start()
     {
-        // Set the initial position to the position of the first level
-        transform.position = GetLevelPosition(currentLevelIndex);
+        StartCoroutine(TransitionToLevel(1));
     }
+
 
     private void Update()
     {
@@ -57,8 +64,21 @@ public class NavigationPath : MonoBehaviour
 
         while (elapsedTime < transitionDuration)
         {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / transitionDuration);
-            elapsedTime += Time.deltaTime;
+            if (currentLevelIndex == 1 && levelIndex == 2) // from level 1 to 2
+            {
+               
+            }
+            else if (currentLevelIndex == 2 && levelIndex == 3) // from level 2 to 3
+            {
+                
+            }
+            else if (currentLevelIndex == 3 && levelIndex == 2) // from level 3 to 2
+            {
+               
+            }
+
+            //transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / transitionDuration);
+            //elapsedTime += Time.deltaTime;
             yield return null;
         }
 
