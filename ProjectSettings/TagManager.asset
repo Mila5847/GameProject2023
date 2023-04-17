@@ -12,6 +12,7 @@ TagManager:
   - Meat
   - TrampolineUp
   - Leaf
+  - Level 1
   layers:
   - Default
   - TransparentFX
