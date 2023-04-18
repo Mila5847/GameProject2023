@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ public class NavigationPath : MonoBehaviour
     public GameObject waypoint2GameObject;
     public GameObject waypoint3GameObject;
     public GameObject waypoint4GameObject;
+
+    private Boolean commingFromLevel3 = false;
 
 
     private int currentLevelIndex = 1;
@@ -82,7 +85,7 @@ public class NavigationPath : MonoBehaviour
 
         while (elapsedTime < transitionDuration)
         {
-            if (currentLevelIndex == 2 && levelIndex == 2 || currentLevelIndex == 1 && levelIndex == 1) // from level 1 to 2
+            if (currentLevelIndex == 2 && levelIndex == 2 && commingFromLevel3 == false || currentLevelIndex == 1 && levelIndex == 1) // from level 1 to 2
             {
                 // Move towards waypoint1 first
                 Vector3 waypoint1Position = waypoint1;
@@ -105,6 +108,7 @@ public class NavigationPath : MonoBehaviour
             }
             else if (currentLevelIndex == 3 && levelIndex == 3) // from level 2 to 3
             {
+                commingFromLevel3 = true;
                 // Move towards waypoint2 first
                 Vector3 waypoint2Position = waypoint2;
                 Vector3 waypoint3Position = waypoint3;
@@ -141,6 +145,46 @@ public class NavigationPath : MonoBehaviour
                 }
                 elapsedTime += Time.deltaTime;
             }
+            else if (currentLevelIndex == 2 && levelIndex == 2 && commingFromLevel3 == true) // from level 2 to 3
+            {
+                commingFromLevel3 = false;
+                // Move towards waypoint4 first
+                Vector3 waypoint2Position = waypoint2;
+                Vector3 waypoint3Position = waypoint3;
+                Vector3 waypoint4Position = waypoint4;
+                float distanceToWaypoint2 = Vector3.Distance(startPosition, waypoint2Position);
+                float distanceToWaypoint3 = Vector3.Distance(waypoint2Position, waypoint3);
+                float distanceToWaypoint4 = Vector3.Distance(waypoint3, waypoint4);
+                float distanceToTarget = Vector3.Distance(waypoint4, targetPosition);
+                float currentLerpTime = elapsedTime / transitionDuration;
+                float lerpTimeToWaypoint4 = distanceToWaypoint4 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
+                float lerpTimeToWaypoint3 = distanceToWaypoint3 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
+                float lerpTimeToWaypoint2 = distanceToWaypoint2 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
+                float lerpTimeToTarget = 1f - lerpTimeToWaypoint2 - lerpTimeToWaypoint3 - lerpTimeToWaypoint4;
+
+                if (currentLerpTime < lerpTimeToWaypoint4)
+                {
+                    // Move towards waypoint4
+                    transform.position = Vector3.Lerp(startPosition, waypoint4Position, currentLerpTime / lerpTimeToWaypoint4);
+                }
+                else if (currentLerpTime < lerpTimeToWaypoint4 + lerpTimeToWaypoint3)
+                {
+                    // Move towards waypoint3
+                    transform.position = Vector3.Lerp(waypoint4Position, waypoint3Position, (currentLerpTime - lerpTimeToWaypoint4) / lerpTimeToWaypoint3);
+                }
+                else if (currentLerpTime < lerpTimeToWaypoint4 + lerpTimeToWaypoint3 + lerpTimeToWaypoint2)
+                {
+                    // Move towards waypoint2
+                    transform.position = Vector3.Lerp(waypoint3Position, waypoint2Position, (currentLerpTime - lerpTimeToWaypoint4 - lerpTimeToWaypoint3) / lerpTimeToWaypoint2);
+                }
+                else
+                {
+                    // Move towards targetPosition
+                    transform.position = Vector3.Lerp(waypoint2Position, targetPosition, (currentLerpTime - lerpTimeToWaypoint4 - lerpTimeToWaypoint3 - lerpTimeToWaypoint2) / lerpTimeToTarget);
+                }
+                elapsedTime += Time.deltaTime;
+            }
+
             else
             {
                 // Move towards targetPosition in a straight line
