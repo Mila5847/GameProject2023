@@ -14778,7 +14778,7 @@ GameObject:
   - component: {fileID: 753213326}
   m_Layer: 0
   m_Name: waypoint 3
-  m_TagString: Untagged
+  m_TagString: LevelPath 3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25866,7 +25866,7 @@ GameObject:
   - component: {fileID: 1268022555}
   m_Layer: 0
   m_Name: waypoint 4
-  m_TagString: Untagged
+  m_TagString: LevelPath 4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31102,7 +31102,7 @@ GameObject:
   - component: {fileID: 1697000960}
   m_Layer: 0
   m_Name: waypoint 2
-  m_TagString: Untagged
+  m_TagString: LevelPath 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
