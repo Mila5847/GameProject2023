@@ -18989,10 +18989,11 @@ MonoBehaviour:
   nextLevelKey: 275
   previousLevelKey: 276
   transitionDuration: 1
-  waypoint1: {fileID: 0}
-  waypoint2: {fileID: 0}
-  waypoint3: {fileID: 0}
-  waypoint4: {fileID: 0}
+  waypoint1: {x: 0, y: 0, z: 0}
+  waypoint2: {x: 0, y: 0, z: 0}
+  waypoint3: {x: 0, y: 0, z: 0}
+  waypoint4: {x: 0, y: 0, z: 0}
+  waypoint1GameObject: {fileID: 0}
 --- !u!4 &1142601402
 Transform:
   m_ObjectHideFlags: 0
@@ -33451,10 +33452,11 @@ MonoBehaviour:
   nextLevelKey: 275
   previousLevelKey: 276
   transitionDuration: 1
-  waypoint1: {fileID: 0}
-  waypoint2: {fileID: 0}
-  waypoint3: {fileID: 0}
-  waypoint4: {fileID: 0}
+  waypoint1: {x: 0, y: 0, z: 0}
+  waypoint2: {x: 0, y: 0, z: 0}
+  waypoint3: {x: 0, y: 0, z: 0}
+  waypoint4: {x: 0, y: 0, z: 0}
+  waypoint1GameObject: {fileID: 0}
 --- !u!1001 &1899773001
 PrefabInstance:
   m_ObjectHideFlags: 0

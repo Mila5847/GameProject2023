@@ -16,6 +16,8 @@ TagManager:
   - Level 2
   - Level 3
   - Square
+  - LevelPath 1
+  - LevelPath 2
   layers:
   - Default
   - TransparentFX
