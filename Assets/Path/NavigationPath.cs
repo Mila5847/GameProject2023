@@ -25,7 +25,7 @@ public class NavigationPath : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(TransitionToLevel(1));
+        StartCoroutine(TransitionToLevel(currentLevelIndex));
     }
 
 
@@ -61,7 +61,7 @@ public class NavigationPath : MonoBehaviour
     {
         isTransitioning = true;
         targetPosition = GetLevelPosition(levelIndex);
-        waypoint1GameObject = GameObject.FindWithTag("Level 1");
+        waypoint1GameObject = GameObject.FindWithTag("LevelPath 1");
         waypoint1 = waypoint1GameObject.transform.position;
 
         Vector3 startPosition = transform.position;
@@ -69,10 +69,10 @@ public class NavigationPath : MonoBehaviour
 
         while (elapsedTime < transitionDuration)
         {
-            if (currentLevelIndex == 2 && levelIndex == 2) // from level 1 to 2
+            if (currentLevelIndex == 2 && levelIndex == 2 || currentLevelIndex == 1 && levelIndex == 1) // from level 1 to 2
             {
                 // Move towards waypoint1 first
-                Vector3 waypoint1Position = waypoint1 + new Vector3(2f, 0f, 0f); // Offset to the right
+                Vector3 waypoint1Position = waypoint1;
                 float distanceToWaypoint1 = Vector3.Distance(startPosition, waypoint1Position);
                 float distanceToTarget = Vector3.Distance(waypoint1Position, targetPosition);
                 float currentLerpTime = elapsedTime / transitionDuration;
@@ -99,6 +99,7 @@ public class NavigationPath : MonoBehaviour
 
             yield return null;
         }
+
 
         transform.position = targetPosition;
         isTransitioning = false;
