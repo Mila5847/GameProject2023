@@ -26,14 +26,14 @@ public class TrampolineBounce : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (collided)
+       /* if (collided)
         {
             rb.MovePosition(Vector3.MoveTowards(transform.position, target.transform.position, 2 * Time.deltaTime));
-            /*// Calculate the direction to the target position
+             Calculate the direction to the target position
             Vector3 direction = targetPosition.position - objectToMove.position;
 
             // Move towards the target position using Lerp
-            objectToMove.position = Vector3.Lerp(objectToMove.position, targetPosition.position, speed * Time.fixedDeltaTime);*/
-        }
+            objectToMove.position = Vector3.Lerp(objectToMove.position, targetPosition.position, speed * Time.fixedDeltaTime);
+        }*/
     }
 }
