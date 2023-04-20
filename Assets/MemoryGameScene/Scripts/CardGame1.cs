@@ -48,6 +48,9 @@ public class CardGame1 : MonoBehaviour
             }
 
 
+
+
+
         }
         Random rnd = new Random();
         int[] mixedValues = values.OrderBy(x => rnd.Next()).ToArray();
@@ -65,19 +68,19 @@ public class CardGame1 : MonoBehaviour
 
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
 
 
-        //if (Input.GetMouseButtonDown((int)KeyCode.Mouse0))
-        //{
-        //    gameObject.SetActive(show);
 
-        //}
+
 
 
     }
+
 
 
 

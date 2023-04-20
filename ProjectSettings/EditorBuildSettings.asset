@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level1/Level1Intro.unity
     guid: 01940db514d08644aab4eaa781275d7d
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory1/MemoryGameMenu1.unity
+    guid: 26db00911cdeae5409343db043d146bc
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory1/MemoryGame1.unity
+    guid: a77b61fb7e04a2e41925c1260ad72bdb
   m_configObjects: {}
