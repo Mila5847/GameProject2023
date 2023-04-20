@@ -20,6 +20,7 @@ TagManager:
   - LevelPath 2
   - LevelPath 3
   - LevelPath 4
+  - Card
   layers:
   - Default
   - TransparentFX
