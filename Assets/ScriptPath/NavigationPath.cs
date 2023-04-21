@@ -7,211 +7,123 @@ using UnityEngine.SceneManagement;
 
 public class NavigationPath : MonoBehaviour
 {
-    public int totalLevels = 3;
+    public int totalLevels;
     public KeyCode nextLevelKey = KeyCode.RightArrow;
     public KeyCode previousLevelKey = KeyCode.LeftArrow;
-    public float transitionDuration = 4.5f;
+    public float moveSpeed = 5f;
 
-    public Vector3 waypoint1;
-    public Vector3 waypoint2;
-    public Vector3 waypoint3;
-    public Vector3 waypoint4;
-
-    public GameObject waypoint1GameObject;
-    public GameObject waypoint2GameObject;
-    public GameObject waypoint3GameObject;
-    public GameObject waypoint4GameObject;
-
-    private Boolean commingFromLevel3 = false;
-
-
-    private int currentLevelIndex = 1;
+    [SerializeField]
+    public List<PathObject> waypointGameObjects = new List<PathObject>();
+    
+    private int level = 1;
     private bool isTransitioning = false;
     private Vector3 targetPosition;
 
     private void Start()
     {
-        StartCoroutine(TransitionToLevel(currentLevelIndex));
-    }
+        // Composition of the full path
+        waypointGameObjects.Add(new PathObject(new Vector2(6.42f, -8.84f), WayPointType.Level, 1));
+        waypointGameObjects.Add(new PathObject(new Vector2(8.53f, -8.43f), WayPointType.PathWay, null));
+        waypointGameObjects.Add(new PathObject(new Vector2(8.34f, -2.67f), WayPointType.Level, 2));
+        waypointGameObjects.Add(new PathObject(new Vector2(5.98f, -1.29f), WayPointType.PathWay, null));
+        waypointGameObjects.Add(new PathObject(new Vector2(-0.34f, -1.4f), WayPointType.PathWay, null));
+        waypointGameObjects.Add(new PathObject(new Vector2(-0.46f, 2.54f), WayPointType.PathWay, null));
+        waypointGameObjects.Add(new PathObject(new Vector2(6.23f, 3.31f), WayPointType.Level, 3));
 
+        // Count of all nodes with a waypointtype of "level".
+        totalLevels = waypointGameObjects.Count(l => l.type == WayPointType.Level);
+
+        // Start at the bottom.
+        transform.position = waypointGameObjects[0].waypoint;
+    }
 
     private void Update()
     {
         if (!isTransitioning && Input.GetKeyDown(nextLevelKey))
         {
-            currentLevelIndex++;
-            if (currentLevelIndex > totalLevels)
+            int newlevel = level;
+            newlevel++;
+
+            if (newlevel > totalLevels)
             {
-                currentLevelIndex = totalLevels;
+                newlevel = totalLevels;
             }
             else
             {
-                StartCoroutine(TransitionToLevel(currentLevelIndex));
+                StartCoroutine(TransitionToLevel(level, newlevel));
             }
         }
         else if (!isTransitioning && Input.GetKeyDown(previousLevelKey))
         {
-            currentLevelIndex--;
-            if (currentLevelIndex < 1)
+            int newlevel = level;
+            newlevel--;
+
+            if (newlevel < 1)
             {
-                currentLevelIndex = 1;
+                newlevel = 1;
             }
             else
             {
-                StartCoroutine(TransitionToLevel(currentLevelIndex));
+                StartCoroutine(TransitionToLevel(level, newlevel));
             }
         }
     }
 
-    private IEnumerator TransitionToLevel(int levelIndex)
+    private IEnumerator TransitionToLevel(int currentlevel, int newlevel)
     {
         isTransitioning = true;
-        targetPosition = GetLevelPosition(levelIndex);
 
-        waypoint1GameObject = GameObject.FindWithTag("LevelPath 1");
-        waypoint1 = waypoint1GameObject.transform.position;
+        // This is the range of movemovent from level X to level Y.        
+        List<PathObject> partPath = new List<PathObject>();
 
-        waypoint2GameObject = GameObject.FindWithTag("LevelPath 2");
-        waypoint2 = waypoint2GameObject.transform.position;
+        // Get all the elements from the list between level X and Y forward or reverse.
+        int start_index = waypointGameObjects.FindIndex(o => o.level == currentlevel);
+        int end_index = waypointGameObjects.FindIndex(o => o.level == newlevel);
+        partPath = waypointGameObjects.Skip(Math.Min(start_index, end_index)).Take(Math.Abs(start_index - end_index) + 1).ToList();
 
-        waypoint3GameObject = GameObject.FindWithTag("LevelPath 3");
-        waypoint3 = waypoint3GameObject.transform.position;
-
-        waypoint4GameObject = GameObject.FindWithTag("LevelPath 4");
-        waypoint4 = waypoint4GameObject.transform.position;
-
-        Vector3 startPosition = transform.position;
-        float elapsedTime = 0.0f;
-
-        while (elapsedTime < transitionDuration)
+        // If moving backwards, reverse the nodes we found.
+        if (currentlevel > newlevel)
         {
-            if (currentLevelIndex == 2 && levelIndex == 2 && commingFromLevel3 == false || currentLevelIndex == 1 && levelIndex == 1) // from level 1 to 2
-            {
-                // Move towards waypoint1 first
-                Vector3 waypoint1Position = waypoint1;
-                float distanceToWaypoint1 = Vector3.Distance(startPosition, waypoint1Position);
-                float distanceToTarget = Vector3.Distance(waypoint1Position, targetPosition);
-                float currentLerpTime = elapsedTime / transitionDuration;
-                float lerpTimeToWaypoint1 = distanceToWaypoint1 / (distanceToWaypoint1 + distanceToTarget);
-                float lerpTimeToTarget = 1f - lerpTimeToWaypoint1;
-                if (currentLerpTime < lerpTimeToWaypoint1)
-                {
-                    // Move towards waypoint1
-                    transform.position = Vector3.Lerp(startPosition, waypoint1Position, currentLerpTime / lerpTimeToWaypoint1);
-                }
-                else
-                {
-                    // Move towards targetPosition
-                    transform.position = Vector3.Lerp(waypoint1Position, targetPosition, (currentLerpTime - lerpTimeToWaypoint1) / lerpTimeToTarget);
-                }
-                elapsedTime += Time.deltaTime;
-            }
-            else if (currentLevelIndex == 3 && levelIndex == 3) // from level 2 to 3
-            {
-                commingFromLevel3 = true;
-                // Move towards waypoint2 first
-                Vector3 waypoint2Position = waypoint2;
-                Vector3 waypoint3Position = waypoint3;
-                Vector3 waypoint4Position = waypoint4;
-                float distanceToWaypoint2 = Vector3.Distance(startPosition, waypoint2Position);
-                float distanceToWaypoint3 = Vector3.Distance(waypoint2Position, waypoint3);
-                float distanceToWaypoint4 = Vector3.Distance(waypoint3, waypoint4);
-                float distanceToTarget = Vector3.Distance(waypoint4, targetPosition);
-                float currentLerpTime = elapsedTime / transitionDuration;
-                float lerpTimeToWaypoint2 = distanceToWaypoint2 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToWaypoint3 = distanceToWaypoint3 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToWaypoint4 = distanceToWaypoint4 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToTarget = 1f - lerpTimeToWaypoint2 - lerpTimeToWaypoint3 - lerpTimeToWaypoint4;
-
-                if (currentLerpTime < lerpTimeToWaypoint2)
-                {
-                    // Move towards waypoint2
-                    transform.position = Vector3.Lerp(startPosition, waypoint2Position, currentLerpTime / lerpTimeToWaypoint2);
-                }
-                else if (currentLerpTime < lerpTimeToWaypoint2 + lerpTimeToWaypoint3)
-                {
-                    // Move towards waypoint3
-                    transform.position = Vector3.Lerp(waypoint2Position, waypoint3, (currentLerpTime - lerpTimeToWaypoint2) / lerpTimeToWaypoint3);
-                }
-                else if (currentLerpTime < lerpTimeToWaypoint2 + lerpTimeToWaypoint3 + lerpTimeToWaypoint4)
-                {
-                    // Move towards waypoint4
-                    transform.position = Vector3.Lerp(waypoint3, waypoint4, (currentLerpTime - lerpTimeToWaypoint2 - lerpTimeToWaypoint3) / lerpTimeToWaypoint4);
-                }
-                else
-                {
-                    // Move towards targetPosition
-                    transform.position = Vector3.Lerp(waypoint4, targetPosition, (currentLerpTime - lerpTimeToWaypoint2 - lerpTimeToWaypoint3 - lerpTimeToWaypoint4) / lerpTimeToTarget);
-                }
-                elapsedTime += Time.deltaTime;
-            }
-            else if (currentLevelIndex == 2 && levelIndex == 2 && commingFromLevel3 == true) // from level 2 to 3
-            {
-                commingFromLevel3 = false;
-                // Move towards waypoint4 first
-                Vector3 waypoint2Position = waypoint2;
-                Vector3 waypoint3Position = waypoint3;
-                Vector3 waypoint4Position = waypoint4;
-                float distanceToWaypoint2 = Vector3.Distance(startPosition, waypoint2Position);
-                float distanceToWaypoint3 = Vector3.Distance(waypoint2Position, waypoint3);
-                float distanceToWaypoint4 = Vector3.Distance(waypoint3, waypoint4);
-                float distanceToTarget = Vector3.Distance(waypoint4, targetPosition);
-                float currentLerpTime = elapsedTime / transitionDuration;
-                float lerpTimeToWaypoint4 = distanceToWaypoint4 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToWaypoint3 = distanceToWaypoint3 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToWaypoint2 = distanceToWaypoint2 / (distanceToWaypoint2 + distanceToWaypoint3 + distanceToWaypoint4 + distanceToTarget);
-                float lerpTimeToTarget = 1f - lerpTimeToWaypoint2 - lerpTimeToWaypoint3 - lerpTimeToWaypoint4;
-
-                if (currentLerpTime < lerpTimeToWaypoint4)
-                {
-                    // Move towards waypoint4
-                    transform.position = Vector3.Lerp(startPosition, waypoint4Position, currentLerpTime / lerpTimeToWaypoint4);
-                }
-                else if (currentLerpTime < lerpTimeToWaypoint4 + lerpTimeToWaypoint3)
-                {
-                    // Move towards waypoint3
-                    transform.position = Vector3.Lerp(waypoint4Position, waypoint3Position, (currentLerpTime - lerpTimeToWaypoint4) / lerpTimeToWaypoint3);
-                }
-                else if (currentLerpTime < lerpTimeToWaypoint4 + lerpTimeToWaypoint3 + lerpTimeToWaypoint2)
-                {
-                    // Move towards waypoint2
-                    transform.position = Vector3.Lerp(waypoint3Position, waypoint2Position, (currentLerpTime - lerpTimeToWaypoint4 - lerpTimeToWaypoint3) / lerpTimeToWaypoint2);
-                }
-                else
-                {
-                    // Move towards targetPosition
-                    transform.position = Vector3.Lerp(waypoint2Position, targetPosition, (currentLerpTime - lerpTimeToWaypoint4 - lerpTimeToWaypoint3 - lerpTimeToWaypoint2) / lerpTimeToTarget);
-                }
-                elapsedTime += Time.deltaTime;
-            }
-
-            else
-            {
-                // Move towards targetPosition in a straight line
-                transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / transitionDuration);
-                elapsedTime += Time.deltaTime;
-
-            }
-
-            yield return null;
-
-
+            partPath.Reverse();
         }
 
+        // Remove the current node, since we don't want to go there.
+        partPath.RemoveAt(0);
 
-        transform.position = targetPosition;
+        foreach (var p in partPath)
+        {
+            Vector3 startPosition = transform.position;
+            targetPosition = p.waypoint;
+
+            while (transform.position != targetPosition)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
         isTransitioning = false;
+        level = newlevel;
+        yield return null;
     }
+}
 
+public enum WayPointType
+{
+    Level,
+    PathWay
+}
 
-
-    private Vector3 GetLevelPosition(int levelIndex)
+public class PathObject
+{
+    public PathObject(Vector2 wp, WayPointType wpt, int? l)
     {
-        // Find the GameObject with the tag "Level" followed by the levelIndex
-        GameObject level = GameObject.FindWithTag("Level " + levelIndex);
-
-        // Return the position of the level GameObject
-        return level.transform.position;
+        this.waypoint = wp;
+        this.type = wpt;
+        this.level = l;
     }
 
+    public Vector2 waypoint;
+    public WayPointType type;
+    public int? level;
 }
