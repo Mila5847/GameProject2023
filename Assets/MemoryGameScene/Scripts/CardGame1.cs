@@ -74,17 +74,7 @@ public class CardGame1 : MonoBehaviour
     void Update()
     {
 
-
-
-
-
-
     }
-
-
-
-
-
 
 
 }
