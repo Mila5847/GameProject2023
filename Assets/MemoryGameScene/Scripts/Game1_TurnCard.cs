@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -29,33 +28,7 @@ public class CardGame1_TurnCard : MonoBehaviour
     {
 
 
-        if (Input.GetMouseButtonDown((int)MouseButton.Left))
-        {
 
-            Vector3 cardRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D clickedCard = Physics2D.Raycast(cardRay, Vector2.zero);
-
-
-            if ((clickedCard.Equals(cards[0]) && (clickedCard.Equals(cards[1]))) || (clickedCard.Equals(cards[2]) && (clickedCard.Equals(cards[3]))) || (clickedCard.Equals(cards[4]) && (clickedCard.Equals(cards[5]))))
-            {
-                Debug.Log(clickedCard.collider.name + "was clicked");
-                //hide 
-                gameObject.GetComponent<Renderer>().enabled = false;
-
-
-            }
-            else if (clickedCard)
-            {
-
-                //show non-flipped card
-                gameObject.GetComponent<Renderer>().enabled = true;
-                StartCoroutine(SecondsCoroutine());
-
-            }
-
-
-
-        }
 
 
 
