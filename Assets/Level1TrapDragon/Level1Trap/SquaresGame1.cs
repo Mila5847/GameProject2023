@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Squares : MonoBehaviour
 {
     public GameObject squarePrefab;
     public int numRows = 6;
-    public int numColumns = 5;
+    public int numColumns = 6;
     public float rowSpacing = 1.5f;
     public float colSpacing = 1.5f;
 
     private GameObject[,] squares;
     public GameObject dragonPrefab;
     private GameObject dragon;
+
+    private int redSquares;
+    private int pointCount;
 
     void Start()
     {
@@ -45,8 +49,8 @@ public class Squares : MonoBehaviour
 
         // Create the dragon and position it on a random square
         dragon = Instantiate(dragonPrefab, transform);
-        int randomRow = Random.Range(0, numRows);
-        int randomCol = Random.Range(0, numColumns);
+        int randomRow = numRows/2;
+        int randomCol = numColumns/2;
         dragon.transform.position = squares[randomRow, randomCol].transform.position;
     }
 
@@ -67,11 +71,51 @@ public class Squares : MonoBehaviour
                 if (renderer.material.color != Color.red)
                 {
                     renderer.material.color = Color.red;
+                    redSquares++;
 
                     // Check if the dragon is surrounded by red squares
                     if (IsDragonSurroundedByRedSquares())
                     {
+                        if (redSquares <= 10)
+                        {
+                            Debug.Log("nb squares " + redSquares);
+                            pointCount = 3;
+
+                        }else if(redSquares > 10 && redSquares <= 20)
+                        {
+                            Debug.Log("nb squares " + redSquares);
+                            pointCount = 2;
+                        }
+                        else
+                        {
+                            pointCount = 1;
+                        }
+
                         Debug.Log("The dragon is surrounded by red squares!");
+                        string currentScene = SceneManager.GetActiveScene().name;
+                        Debug.Log("Scene " + currentScene);
+
+                        switch (currentScene)
+                        {
+                            case "DragonGameSc1":
+                                StarsManager.trapDragonMinigame1Points = pointCount;
+                                Debug.Log("Level 1 and nb points: " + StarsManager.trapDragonMinigame1Points);
+                                break;
+                            case "DragonGameSc2":
+                                StarsManager.trapDragonMinigame2Points = pointCount;
+                                Debug.Log("Level 2 and nb points: " + StarsManager.trapDragonMinigame2Points);
+                                break;
+                            /*case "":
+                                StarsManager.trapDragonMinigame3Points = pointCount;
+                                Debug.Log("Level 3 and nb points " + StarsManager.trapDragonMinigame3Points);
+                                StarsManager.startTime = 0;
+                                //SceneManager.LoadScene("Success");
+                                break;*/
+                            default:
+                                Debug.Log("Unknown scene: " + currentScene);
+                                break;
+                        }
+           
                     }
                     else
                     {

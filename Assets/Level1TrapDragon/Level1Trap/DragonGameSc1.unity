@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squarePrefab: {fileID: 8404599160952645821, guid: 45ca92b697d920049ba36fc9a6564861, type: 3}
-  numRows: 6
-  numColumns: 5
+  numRows: 7
+  numColumns: 7
   rowSpacing: 1.5
   colSpacing: 1.5
   dragonPrefab: {fileID: 648011773745838230, guid: 4d492323345098b4da2f7543393ac028, type: 3}

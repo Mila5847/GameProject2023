@@ -17,10 +17,13 @@ public class PaddleScript : MonoBehaviour
     void Update()
     {
      
-        // If the meat is stuck to the paddle, move it along with the paddle
-        if (meatStuck)
+        if(meat != null)
         {
-            meat.transform.position = transform.position + new Vector3(0, 0.50f, 0);
+            // If the meat is stuck to the paddle, move it along with the paddle
+            if (meatStuck)
+            {
+                meat.transform.position = transform.position + new Vector3(0, 0.50f, 0);
+            }
         }
     }
 

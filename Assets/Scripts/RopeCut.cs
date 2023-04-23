@@ -7,7 +7,7 @@ public class RopeCut : MonoBehaviour
     public GameObject markerPrefab;
     public float duration = 0.05f;
     public float fadeTime = 0.05f;
-    public float ropeCutDelay = 30f;
+    public float ropeCutDelay = 5f;
     private GameObject redRope;
 
     // Start is called before the first frame update
@@ -26,15 +26,16 @@ public class RopeCut : MonoBehaviour
 
     void CutRope()
     {
-        // Find a random link in the red rope to cut
-        int linkCount = redRope.transform.childCount;
-        int linkIndex = Random.Range(0, linkCount);
+       
+            // Find a random link in the red rope to cut
+            int linkCount = redRope.transform.childCount;
+            int linkIndex = Random.Range(0, linkCount);
 
-        // Destroy the link and its joint
-        GameObject link = redRope.transform.GetChild(linkIndex).gameObject;
-        Destroy(link.GetComponent<HingeJoint2D>());
-        Destroy(link);
-
+            // Destroy the link and its joint
+            GameObject link = redRope.transform.GetChild(linkIndex).gameObject;
+            Destroy(link.GetComponent<HingeJoint2D>());
+            Destroy(link);
+        
     }
 
     // Update is called once per frame
