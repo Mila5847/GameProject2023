@@ -47,14 +47,14 @@ public class Squares2 : MonoBehaviour
             }
          
         }
-        squares[0, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[0, 3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[0, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[3, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[3, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[6, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[6, 3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        squares[6, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        squares[0, 0].GetComponent<SpriteRenderer>().color = Color.blue;
+        squares[0, 3].GetComponent<SpriteRenderer>().color = Color.blue;
+       // squares[0, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //squares[3, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //squares[3, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //squares[6, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //squares[6, 3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        //squares[6, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
         // Create the dragon and position it on a random square
         dragon = Instantiate(dragonPrefab, transform);
@@ -65,6 +65,7 @@ public class Squares2 : MonoBehaviour
 
     void Update()
     {
+
         // Check if the left mouse button is pressed
         if (Input.GetMouseButtonDown(0))
         {
@@ -77,6 +78,7 @@ public class Squares2 : MonoBehaviour
             {
                 GameObject square = hit.collider.gameObject;
                 Renderer renderer = square.GetComponent<Renderer>();
+
                 if (renderer.material.color != Color.red)
                 {
                     renderer.material.color = Color.red;
@@ -138,6 +140,7 @@ public class Squares2 : MonoBehaviour
 
     bool IsDragonSurroundedByRedSquares()
     {
+
         int dragonRow = 0;
         int dragonCol = 0;
 
@@ -199,6 +202,7 @@ public class Squares2 : MonoBehaviour
         // Find all adjacent squares that are not red
         List<GameObject> validSquares = new List<GameObject>();
 
+
         if (dragonRow > 0 && squares[dragonRow - 1, dragonCol].GetComponent<Renderer>().material.color != Color.red)
         {
             validSquares.Add(squares[dragonRow - 1, dragonCol]);
@@ -232,5 +236,6 @@ public class Squares2 : MonoBehaviour
         // Otherwise, choose a random valid square and move the dragon to it
         int randomIndex = Random.Range(0, validSquares.Count);
         dragon.transform.position = validSquares[randomIndex].transform.position;
+    
     }
 }
