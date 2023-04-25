@@ -66,6 +66,31 @@ public class Squares2 : MonoBehaviour
     void Update()
     {
 
+        // Check if the dragon is on a blue tile
+        bool isOnBlueTile = false;
+        for (int row = 0; row < numRows; row++)
+        {
+            for (int col = 0; col < numColumns; col++)
+            {
+                if (squares[row, col].GetComponent<SpriteRenderer>().color == Color.blue)
+                {
+                    if (Mathf.Approximately(dragon.transform.position.x, squares[row, col].transform.position.x) &&
+                        Mathf.Approximately(dragon.transform.position.y, squares[row, col].transform.position.y))
+                    {
+                        isOnBlueTile = true;
+                        break;
+                    }
+                }
+            }
+            if (isOnBlueTile) break;
+        }
+
+        // Write "game over" to the console if the dragon is on a blue tile
+        if (isOnBlueTile)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
         // Check if the left mouse button is pressed
         if (Input.GetMouseButtonDown(0))
         {
@@ -236,6 +261,6 @@ public class Squares2 : MonoBehaviour
         // Otherwise, choose a random valid square and move the dragon to it
         int randomIndex = Random.Range(0, validSquares.Count);
         dragon.transform.position = validSquares[randomIndex].transform.position;
-    
+        
     }
 }
