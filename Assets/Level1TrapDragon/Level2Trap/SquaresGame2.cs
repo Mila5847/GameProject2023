@@ -12,6 +12,7 @@ public class Squares2 : MonoBehaviour
     public float rowSpacing = 1.5f;
     public float colSpacing = 1.5f;
     public Text usedSteps;
+    public GameObject rockPrefab;
 
     private GameObject[,] squares;
     public GameObject dragonPrefab;
@@ -133,6 +134,8 @@ public class Squares2 : MonoBehaviour
                 {
                     renderer.material.color = Color.red;
                     redSquares++;
+
+                    Instantiate(rockPrefab, square.transform.position, Quaternion.identity);
 
                     // Check if the dragon is surrounded by red squares
                     if (IsDragonSurroundedByRedSquares())

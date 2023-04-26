@@ -30,7 +30,7 @@ public class LevelTrigger : MonoBehaviour
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
-            //SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level1");
                 
         }
         if (gameObject.CompareTag("level2"))
