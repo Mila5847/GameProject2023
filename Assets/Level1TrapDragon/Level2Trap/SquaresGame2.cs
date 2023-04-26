@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Squares2 : MonoBehaviour
 {
     public GameObject squarePrefab;
-    public int numRows = 7;
-    public int numColumns = 7;
+    public int numRows = 6;
+    public int numColumns = 6;
     public float rowSpacing = 1.5f;
     public float colSpacing = 1.5f;
+    public Text usedSteps;
 
     private GameObject[,] squares;
     public GameObject dragonPrefab;
@@ -17,6 +19,8 @@ public class Squares2 : MonoBehaviour
 
     private int redSquares;
     private int pointCount;
+
+    private string lastLevelName;
 
     void Start()
     {
@@ -47,14 +51,22 @@ public class Squares2 : MonoBehaviour
             }
          
         }
-        squares[0, 0].GetComponent<SpriteRenderer>().color = Color.blue;
-        squares[0, 3].GetComponent<SpriteRenderer>().color = Color.blue;
-       // squares[0, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        //squares[3, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        //squares[3, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        //squares[6, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        //squares[6, 3].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-        //squares[6, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        if(SceneManager.GetActiveScene().name == "DragonGameSc2")
+        {
+            squares[0, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[0, 2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[0, 4].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[0, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[2, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[2, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[3, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[3, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[5, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[5, 2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[5, 4].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[5, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+
+        }
 
         // Create the dragon and position it on a random square
         dragon = Instantiate(dragonPrefab, transform);
@@ -66,28 +78,41 @@ public class Squares2 : MonoBehaviour
     void Update()
     {
 
+        usedSteps.text = redSquares.ToString();
         // Check if the dragon is on a blue tile
-        bool isOnBlueTile = false;
-        for (int row = 0; row < numRows; row++)
+        bool isOnTransparentTile = false;
+
+        Vector2 dragonPos = dragon.transform.position;
+        RaycastHit2D hitBlue = Physics2D.Raycast(dragonPos, Vector2.down);
+
+        if (hitBlue.collider != null)
         {
-            for (int col = 0; col < numColumns; col++)
+            Color tileColor = hitBlue.collider.GetComponent<SpriteRenderer>().color;
+            if (tileColor.r == 1f && tileColor.g == 1f && tileColor.b == 1f && tileColor.a == 0f)
             {
-                if (squares[row, col].GetComponent<SpriteRenderer>().color == Color.blue)
-                {
-                    if (Mathf.Approximately(dragon.transform.position.x, squares[row, col].transform.position.x) &&
-                        Mathf.Approximately(dragon.transform.position.y, squares[row, col].transform.position.y))
-                    {
-                        isOnBlueTile = true;
-                        break;
-                    }
-                }
+                isOnTransparentTile = true;
             }
-            if (isOnBlueTile) break;
         }
 
+
         // Write "game over" to the console if the dragon is on a blue tile
-        if (isOnBlueTile)
+        if (isOnTransparentTile)
         {
+            string currentScene = SceneManager.GetActiveScene().name;
+            if (currentScene == "DragonGameSc1")
+            {
+                // Save the current level name
+                lastLevelName = "DragonGameSc1";
+            }
+            else if (currentScene == "DragonGameSc2")
+            {
+                lastLevelName = "DragonGameSc2";
+            }
+            else if (currentScene == "DragonGameSc3")
+            {
+                lastLevelName = "DragonGameSc3";
+            }
+            PlayerPrefs.SetString("LastScenePlayed", lastLevelName); // Save the last level played
             SceneManager.LoadScene("GameOver");
         }
 

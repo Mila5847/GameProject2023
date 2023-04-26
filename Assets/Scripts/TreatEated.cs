@@ -49,6 +49,7 @@ public class TreatEated : MonoBehaviour
                 case "Level1Intro":
                     StarsManager.cutRopeMinigame1Points = scoreForMinigame;
                     Debug.Log("Level 1 and nb points: " + StarsManager.cutRopeMinigame1Points);
+                    
                     break;
                 case "Level2":
                     StarsManager.cutRopeMinigame2Points = scoreForMinigame;

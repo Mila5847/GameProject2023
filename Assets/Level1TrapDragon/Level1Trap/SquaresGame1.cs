@@ -18,6 +18,8 @@ public class Squares : MonoBehaviour
     private int redSquares;
     private int pointCount;
 
+    private string lastLevelName;
+
     void Start()
     {
         // Calculate total width and height of grid based on number of rows, columns, and spacing
