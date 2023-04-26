@@ -25,6 +25,8 @@ TagManager:
   - Card2
   - Card3
   - level1
+  - level2
+  - level3
   layers:
   - Default
   - TransparentFX
