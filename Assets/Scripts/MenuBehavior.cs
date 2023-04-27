@@ -11,8 +11,8 @@ public class MenuBehavior : MonoBehaviour
 
     public Canvas optionsMenu;
 
-    [SerializeField]
-    private Canvas interrogationMenu;
+    /*[SerializeField]
+    private Canvas interrogationMenu;*/
 
     [SerializeField]
     private Slider volumeSlider;
@@ -24,19 +24,25 @@ public class MenuBehavior : MonoBehaviour
     {
         pauseMenu.enabled = false;
         optionsMenu.enabled = false;
-        interrogationMenu.enabled = false;
+       // interrogationMenu.enabled = false;
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.enabled = true;
-            optionsMenu.enabled = false;
+            Time.timeScale = 0;
+            pauseMenu.enabled = false;
+            optionsMenu.enabled = !optionsMenu.enabled;
+            if (!optionsMenu.enabled)
+            {
+                Time.timeScale = 1;
+            }
+            //interrogationMenu.enabled = false;
         }
     }
-
+    
     public void ChangeVolume()
     {
         if (mute.isOn)
@@ -47,45 +53,26 @@ public class MenuBehavior : MonoBehaviour
         {
             AudioListener.volume = volumeSlider.value;
         }
-    }*/
+    }
 
     public void ShowPauseMenu()
     {
+        Time.timeScale = 0;
         pauseMenu.enabled = true;
         optionsMenu.enabled = false;
-        interrogationMenu.enabled = false;
+        //interrogationMenu.enabled = false;
     }
 
     public void HidePauseMenu()
     {
+        Time.timeScale = 1;
         pauseMenu.enabled = false;
         optionsMenu.enabled = false;
-        interrogationMenu.enabled = false;
+        //interrogationMenu.enabled = false;
     }
 
     public void QuitGame()
     {
-        pauseMenu.enabled = false;
-        optionsMenu.enabled = false;
-        interrogationMenu.enabled = false;
         SceneManager.LoadScene("MainSceneLevels");
     }
-
-
-    /*public void GoToMainMenu()
-    {
-        pauseMenu.enabled = true;
-        optionsMenu.enabled = false;
-    }
-
-    public void MainMenuResume()
-    {
-        pauseMenu.enabled = false;
-        optionsMenu.enabled = false;
-    }
-
-    public void MainMenuQuit()
-    {
-        Application.Quit();
-    }*/
 }

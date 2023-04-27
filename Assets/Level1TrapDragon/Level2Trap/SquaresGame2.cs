@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Squares2 : MonoBehaviour
 {
@@ -117,74 +118,77 @@ public class Squares2 : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
 
-        // Check if the left mouse button is pressed
-        if (Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            // Cast a ray from the mouse position to detect any colliders
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-
-            // If a collider was hit and it's a square, change its color and move the dragon to a random adjacent square that is not red
-            if (hit.collider != null && hit.collider.CompareTag("Square"))
+            // Check if the left mouse button is pressed
+            if (Input.GetMouseButtonDown(0))
             {
-                GameObject square = hit.collider.gameObject;
-                Renderer renderer = square.GetComponent<Renderer>();
+                // Cast a ray from the mouse position to detect any colliders
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-                if (renderer.material.color != Color.red)
+                // If a collider was hit and it's a square, change its color and move the dragon to a random adjacent square that is not red
+                if (hit.collider != null && hit.collider.CompareTag("Square"))
                 {
-                    renderer.material.color = Color.red;
-                    redSquares++;
+                    GameObject square = hit.collider.gameObject;
+                    Renderer renderer = square.GetComponent<Renderer>();
 
-                    Instantiate(rockPrefab, square.transform.position, Quaternion.identity);
-
-                    // Check if the dragon is surrounded by red squares
-                    if (IsDragonSurroundedByRedSquares())
+                    if (renderer.material.color != Color.red)
                     {
-                        if (redSquares <= 10)
-                        {
-                            Debug.Log("nb squares " + redSquares);
-                            pointCount = 3;
+                        renderer.material.color = Color.red;
+                        redSquares++;
 
-                        }
-                        else if (redSquares > 10 && redSquares <= 20)
+                        Instantiate(rockPrefab, square.transform.position, Quaternion.identity);
+
+                        // Check if the dragon is surrounded by red squares
+                        if (IsDragonSurroundedByRedSquares())
                         {
-                            Debug.Log("nb squares " + redSquares);
-                            pointCount = 2;
+                            if (redSquares <= 10)
+                            {
+                                Debug.Log("nb squares " + redSquares);
+                                pointCount = 3;
+
+                            }
+                            else if (redSquares > 10 && redSquares <= 20)
+                            {
+                                Debug.Log("nb squares " + redSquares);
+                                pointCount = 2;
+                            }
+                            else
+                            {
+                                pointCount = 1;
+                            }
+
+                            Debug.Log("The dragon is surrounded by red squares!");
+                            string currentScene = SceneManager.GetActiveScene().name;
+                            Debug.Log("Scene " + currentScene);
+
+                            switch (currentScene)
+                            {
+                                case "DragonGameSc1":
+                                    StarsManager.trapDragonMinigame1Points = pointCount;
+                                    Debug.Log("Level 1 and nb points: " + StarsManager.trapDragonMinigame1Points);
+                                    break;
+                                case "DragonGameSc2":
+                                    StarsManager.trapDragonMinigame2Points = pointCount;
+                                    Debug.Log("Level 2 and nb points: " + StarsManager.trapDragonMinigame2Points);
+                                    break;
+                                /*case "":
+                                    StarsManager.trapDragonMinigame3Points = pointCount;
+                                    Debug.Log("Level 3 and nb points " + StarsManager.trapDragonMinigame3Points);
+                                    StarsManager.startTime = 0;
+                                    //SceneManager.LoadScene("Success");
+                                    break;*/
+                                default:
+                                    Debug.Log("Unknown scene: " + currentScene);
+                                    break;
+                            }
+
                         }
                         else
                         {
-                            pointCount = 1;
+                            MoveDragonToRandomSquare();
                         }
-
-                        Debug.Log("The dragon is surrounded by red squares!");
-                        string currentScene = SceneManager.GetActiveScene().name;
-                        Debug.Log("Scene " + currentScene);
-
-                        switch (currentScene)
-                        {
-                            case "DragonGameSc1":
-                                StarsManager.trapDragonMinigame1Points = pointCount;
-                                Debug.Log("Level 1 and nb points: " + StarsManager.trapDragonMinigame1Points);
-                                break;
-                            case "DragonGameSc2":
-                                StarsManager.trapDragonMinigame2Points = pointCount;
-                                Debug.Log("Level 2 and nb points: " + StarsManager.trapDragonMinigame2Points);
-                                break;
-                            /*case "":
-                                StarsManager.trapDragonMinigame3Points = pointCount;
-                                Debug.Log("Level 3 and nb points " + StarsManager.trapDragonMinigame3Points);
-                                StarsManager.startTime = 0;
-                                //SceneManager.LoadScene("Success");
-                                break;*/
-                            default:
-                                Debug.Log("Unknown scene: " + currentScene);
-                                break;
-                        }
-
-                    }
-                    else
-                    {
-                        MoveDragonToRandomSquare();
                     }
                 }
             }
