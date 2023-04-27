@@ -23,7 +23,7 @@ public class Squares2 : MonoBehaviour
     private int pointCount;
 
     private string lastLevelName;
-
+    private SceneParameters sceneParameters;
     void Start()
     {
         // Calculate total width and height of grid based on number of rows, columns, and spacing
@@ -168,6 +168,10 @@ public class Squares2 : MonoBehaviour
                                 case "DragonGameSc1":
                                     StarsManager.trapDragonMinigame1Points = pointCount;
                                     Debug.Log("Level 1 and nb points: " + StarsManager.trapDragonMinigame1Points);
+                                    sceneParameters.nbPoints = StarsManager.trapDragonMinigame1Points;
+                                    sceneParameters.level = "1";
+                                    sceneParameters.minigameName = "DragonGameSc1";
+                                    SceneManager.LoadScene("Victory", LoadSceneParameters sceneParameters);
                                     break;
                                 case "DragonGameSc2":
                                     StarsManager.trapDragonMinigame2Points = pointCount;
