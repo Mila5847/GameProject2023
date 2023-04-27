@@ -13,7 +13,7 @@ public class CardGame1 : MonoBehaviour
     private bool show = false;
     private bool isInvoked = false;
 
-    private int seconds = 2;
+    private int seconds = 1;
 
     private bool firstCard = false;
 
