@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StarsManager : MonoBehaviour
 {
@@ -24,9 +25,13 @@ public class StarsManager : MonoBehaviour
     public static int cardsMinigame2Points = 0;
     public static int cardsMinigame3Points = 0;
 
+    public Text pointsCounter;
+
     // Update is called once per frame
     void Update()
     {
+        pointsCounter.text = SceneParams.points.ToString();
+
         // Check if the player has earned at least one star in each minigame on level 1
         if (trapDragonMinigame1Points >= 1 && trapDragonMinigame2Points >= 1 && trapDragonMinigame3Points >= 1)
         {

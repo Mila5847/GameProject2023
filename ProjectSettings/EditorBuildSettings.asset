@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level1TrapDragon/Level1Trap/DragonGameSc1.unity
     guid: e19839fed28ec5c4699333834bb79ce8
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 751043228bd058144b51269dfb88750b
   m_configObjects: {}
