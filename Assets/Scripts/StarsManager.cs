@@ -7,38 +7,39 @@ using UnityEngine.UI;
 
 public class StarsManager : MonoBehaviour
 {
-    public static float startTime = 0; 
-    public static float duration = 0;
-
-    public Boolean isLevel2Unlocked = false;
-    public bool isLevel3Unlocked = false;
-
-    public static int trapDragonMinigame1Points = 0;
-    public static int trapDragonMinigame2Points = 0;
-    public static int trapDragonMinigame3Points = 0;
-
-    public static int cutRopeMinigame1Points = 0;
-    public static int cutRopeMinigame2Points = 0;
-    public static int cutRopeMinigame3Points = 0;
-
-    public static int cardsMinigame1Points = 0;
-    public static int cardsMinigame2Points = 0;
-    public static int cardsMinigame3Points = 0;
-
-    public Text pointsCounter;
 
     // Update is called once per frame
+
+    public Text pointsCounter1Text;
+    public Text pointsCounter2Text;
+
+
     void Update()
     {
-        pointsCounter.text = SceneParams.points.ToString();
+        if (SceneParams.gameIdentifier == "TTD1")
+        {
+            Debug.Log("First game trap: " + Constants.trapDragonMinigame1Points);
+            Debug.Log("First game feed: " + Constants.cutRopeMinigame1Points);
+            pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
 
+        }
+
+        if (SceneParams.gameIdentifier == "FTD1")
+        {
+            Debug.Log("Second game trap " + Constants.trapDragonMinigame1Points);
+            Debug.Log("Second game eat " + Constants.cutRopeMinigame1Points);
+            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
+            pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+
+        }
         // Check if the player has earned at least one star in each minigame on level 1
-        if (trapDragonMinigame1Points >= 1 && trapDragonMinigame2Points >= 1 && trapDragonMinigame3Points >= 1)
+        if (Constants.trapDragonMinigame1Points >= 1 && Constants.trapDragonMinigame2Points >= 1 && Constants.trapDragonMinigame3Points >= 1)
         {
             // Unlock level 2 by loading the next scene
             //SceneManager.LoadScene("Level2");
         }
-        if(cutRopeMinigame1Points >= 2 && cutRopeMinigame2Points >= 2 && cutRopeMinigame3Points >= 2)
+        if(Constants.cutRopeMinigame1Points >= 2 && Constants.cutRopeMinigame2Points >= 2 && Constants.cutRopeMinigame3Points >= 2)
         {
             // unlock scene
             Debug.Log("ALL LEVEL SUCCESS");

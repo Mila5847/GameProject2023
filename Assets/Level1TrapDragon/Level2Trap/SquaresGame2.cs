@@ -167,15 +167,16 @@ public class Squares2 : MonoBehaviour
                             switch (currentScene)
                             {
                                 case "DragonGameSc1":
-                                    StarsManager.trapDragonMinigame1Points = pointCount;
-                                    Debug.Log("Level 1 and nb points: " + StarsManager.trapDragonMinigame1Points);
-                                    loader.LoadSceneWithParams(pointCount);
+                                    Constants.trapDragonMinigame1Points = pointCount;
+                                    
+                                    Debug.Log("Level 1 and nb points: " + Constants.trapDragonMinigame1Points);
+                                    loader.LoadSceneWithParams(pointCount, "TTD1");
                         
                                     break;
                                 case "DragonGameSc2":
-                                    StarsManager.trapDragonMinigame2Points = pointCount;
-                                    Debug.Log("Level 2 and nb points: " + StarsManager.trapDragonMinigame2Points);
-                                    loader.LoadSceneWithParams(pointCount);
+                                    Constants.trapDragonMinigame2Points = pointCount;
+                                    Debug.Log("Level 2 and nb points: " + Constants.trapDragonMinigame2Points);
+                                    loader.LoadSceneWithParams(pointCount, "TTD2");
                                     break;
                                 /*case "":
                                     StarsManager.trapDragonMinigame3Points = pointCount;

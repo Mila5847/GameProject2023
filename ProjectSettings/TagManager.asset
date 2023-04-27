@@ -27,6 +27,8 @@ TagManager:
   - level1
   - level2
   - level3
+  - points1
+  - points2
   layers:
   - Default
   - TransparentFX
