@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class StarsManager : MonoBehaviour
 {
     public static float startTime = 0; 
     public static float duration = 0;
+
+    public Boolean isLevel2Unlocked = false;
+    public bool isLevel3Unlocked = false;
 
     public static int trapDragonMinigame1Points = 0;
     public static int trapDragonMinigame2Points = 0;
