@@ -22,6 +22,7 @@ public class NavigationPath : MonoBehaviour
     private void Start()
     {
         // Composition of the full path
+        waypointGameObjects.Add(new PathObject(transform.position, WayPointType.PathWay, null)); // Add new waypoint at player's starting position
         waypointGameObjects.Add(new PathObject(new Vector2(6.42f, -8.84f), WayPointType.Level, 1));
         waypointGameObjects.Add(new PathObject(new Vector2(8.53f, -8.43f), WayPointType.PathWay, null));
         waypointGameObjects.Add(new PathObject(new Vector2(8.34f, -2.67f), WayPointType.Level, 2));
@@ -33,9 +34,10 @@ public class NavigationPath : MonoBehaviour
         // Count of all nodes with a waypointtype of "level".
         totalLevels = waypointGameObjects.Count(l => l.type == WayPointType.Level);
 
-        // Start at the bottom.
-        transform.position = waypointGameObjects[0].waypoint;
+        // Transition to level 1
+        StartCoroutine(TransitionToLevel(0, 1)); // 0 is the current "level", which is the new waypoint we added
     }
+
 
     private void Update()
     {

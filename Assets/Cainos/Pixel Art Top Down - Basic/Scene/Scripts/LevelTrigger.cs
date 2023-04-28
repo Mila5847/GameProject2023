@@ -15,6 +15,7 @@ public class LevelTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private Dictionary<string, string> levelSceneMap = new Dictionary<string, string>()
@@ -47,14 +48,4 @@ public class LevelTrigger : MonoBehaviour
         }
     }
 
-    /*void OnColliderEnter(Collider other)
-    {
-        Debug.Log("triggereddddd");
-        string sceneName;
-        if (levelSceneMap.TryGetValue(other.tag, out sceneName))
-        {
-            SceneManager.LoadScene(sceneName);
-            Debug.Log("triggered");
-        }
-    }*/
 }
