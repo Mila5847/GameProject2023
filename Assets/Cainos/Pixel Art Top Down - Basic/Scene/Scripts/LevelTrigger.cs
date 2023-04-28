@@ -20,7 +20,7 @@ public class LevelTrigger : MonoBehaviour
 
     private Dictionary<string, string> levelSceneMap = new Dictionary<string, string>()
     {
-        { "level1", "Level1" },
+        { "level1", "Level1Status" },
         { "level2", "Level2" },
         { "level3", "Level3" }
     };
@@ -31,7 +31,7 @@ public class LevelTrigger : MonoBehaviour
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level1Status");
                 
         }
         if (gameObject.CompareTag("level2"))
