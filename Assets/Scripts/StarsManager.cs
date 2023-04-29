@@ -12,7 +12,7 @@ public class StarsManager : MonoBehaviour
 
     public Text pointsCounter1Text;
     public Text pointsCounter2Text;
-
+    public Text pointsCounter3Text;
 
     void Update()
     {
@@ -22,6 +22,7 @@ public class StarsManager : MonoBehaviour
             Debug.Log("First game feed: " + Constants.cutRopeMinigame1Points);
             pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
             pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
+            pointsCounter3Text.text = Constants.cardsMinigame1Points.ToString();
 
         }
 
@@ -29,9 +30,21 @@ public class StarsManager : MonoBehaviour
         {
             Debug.Log("Second game trap " + Constants.trapDragonMinigame1Points);
             Debug.Log("Second game eat " + Constants.cutRopeMinigame1Points);
+
             pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
             pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+            pointsCounter3Text.text = Constants.cardsMinigame1Points.ToString();
 
+        }
+
+        if(SceneParams.gameIdentifier == "MC1")
+        {
+            Debug.Log("Second game trap " + Constants.trapDragonMinigame1Points);
+            Debug.Log("Second game eat " + Constants.cutRopeMinigame1Points);
+            Debug.Log("Third game eat " + Constants.cardsMinigame1Points);
+            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
+            pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+            pointsCounter3Text.text = Constants.cardsMinigame1Points.ToString();
         }
         // Check if the player has earned at least one star in each minigame on level 1
         if (Constants.trapDragonMinigame1Points >= 1 && Constants.trapDragonMinigame2Points >= 1 && Constants.trapDragonMinigame3Points >= 1)

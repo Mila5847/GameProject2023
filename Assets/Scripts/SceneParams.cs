@@ -14,6 +14,7 @@ public class LoadSceneWithParameters : MonoBehaviour
     {
         SceneParams.points = points;
         SceneParams.gameIdentifier = gameIdentifier;
+        Constants.currentScore = points;
         SceneManager.LoadScene("Victory");
     }
 

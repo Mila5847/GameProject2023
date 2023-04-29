@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class CardGame1 : MonoBehaviour
@@ -16,16 +17,20 @@ public class CardGame1 : MonoBehaviour
     private int seconds = 1;
 
     private bool firstCard = false;
+    private int missedMatches = 0;
+    private int pointCount = 0;
 
     private Stack<int> cardValues = new Stack<int>();
     private Stack<GameObject> selectedCards = new Stack<GameObject>();
 
     public RaycastHit2D clicked;
+    private LoadSceneWithParameters loader;
 
     public Dictionary<ulong, int> cardWithValue = new Dictionary<ulong, int>();
     // Start is called before the first frame update
     void Start()
     {
+        loader = new LoadSceneWithParameters();
         Random randObj = new Random();
         bool found;
         cards = GameObject.FindGameObjectsWithTag("Card").ToList();
@@ -82,6 +87,44 @@ public class CardGame1 : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Card").ToList().Count <= 0)
         {
             Debug.Log("The level is done !");
+            if (missedMatches >= 3)
+            {
+                pointCount = 1;
+            }
+            if (missedMatches == 2)
+            {
+                pointCount = 2;
+            }
+            if (missedMatches < 2)
+            {
+                pointCount = 3;
+            }
+          
+            string currentScene = SceneManager.GetActiveScene().name;
+            Debug.Log("Scene " + currentScene);
+
+            switch (currentScene)
+            {
+                case "MemoryGame1":
+                    Constants.cardsMinigame1Points = pointCount;
+                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame1Points);
+                    loader.LoadSceneWithParams(pointCount, "MC1");
+                    break;
+                case "MemoryGame2":
+                    Constants.cardsMinigame2Points = pointCount;
+                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame2Points);
+                    loader.LoadSceneWithParams(pointCount, "MC2");
+                    break;
+                case "MemoryGame3":
+                    Constants.cardsMinigame3Points = pointCount;
+                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame3Points);
+                    loader.LoadSceneWithParams(pointCount, "MC3");
+                    break;
+                default:
+                    Debug.Log("Unknown scene: " + currentScene);
+                    break;
+            }
+      
         }
 
 
@@ -141,6 +184,7 @@ public class CardGame1 : MonoBehaviour
         else
         {
             Debug.Log("They are not the same");
+            missedMatches++;
             while (selectedCards.Count > 0)
             {
                 GameObject go = selectedCards.Pop();

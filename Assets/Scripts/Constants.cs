@@ -23,6 +23,8 @@ public static class Constants {
     public static int cardsMinigame2Points = 0;
     public static int cardsMinigame3Points = 0;
 
+    public static int currentScore = 0;
+
     public static Text pointsCounter1;
     public static Text pointsCounter2;
     //public Text pointsCounter3;
