@@ -825,10 +825,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1231956686}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1231956689}
+        m_TargetAssemblyTypeName: LevelTrigger, Assembly-CSharp
+        m_MethodName: BackToGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1336,6 +1336,7 @@ GameObject:
   - component: {fileID: 1231956687}
   - component: {fileID: 1231956686}
   - component: {fileID: 1231956688}
+  - component: {fileID: 1231956689}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1385,6 +1386,18 @@ MonoBehaviour:
   pointsCounter1Text: {fileID: 235542349}
   pointsCounter2Text: {fileID: 1615637534}
   pointsCounter3Text: {fileID: 39083425}
+--- !u!114 &1231956689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231956685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f435676da80b4498b3c6f78b463f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1353236557
 GameObject:
   m_ObjectHideFlags: 0
