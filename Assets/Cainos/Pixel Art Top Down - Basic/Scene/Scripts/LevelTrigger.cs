@@ -1,23 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class LevelTrigger : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private Dictionary<string, string> levelSceneMap = new Dictionary<string, string>()
     {
         { "level1", "Level1Status" },
@@ -31,8 +17,11 @@ public class LevelTrigger : MonoBehaviour
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
+            PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
+            PlayerPrefs.SetFloat("playerPositionX", transform.position.x);
+            PlayerPrefs.SetFloat("playerPositionY", transform.position.y);
             SceneManager.LoadScene("Level1Status");
-                
+
         }
         if (gameObject.CompareTag("level2"))
         {
@@ -48,4 +37,13 @@ public class LevelTrigger : MonoBehaviour
         }
     }
 
+    public void BackToGame()
+    {
+        string previousScene = PlayerPrefs.GetString("previousScene");
+        SceneManager.LoadScene(previousScene);
+        float playerPositionX = PlayerPrefs.GetFloat("playerPositionX");
+        float playerPositionY = PlayerPrefs.GetFloat("playerPositionY");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector2(playerPositionX, playerPositionY);
+    }
 }

@@ -30,9 +30,8 @@ public class StarsManager : MonoBehaviour
         {
             Debug.Log("Second game trap " + Constants.trapDragonMinigame1Points);
             Debug.Log("Second game eat " + Constants.cutRopeMinigame1Points);
-
-            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
             pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
             pointsCounter3Text.text = Constants.cardsMinigame1Points.ToString();
 
         }
@@ -42,10 +41,31 @@ public class StarsManager : MonoBehaviour
             Debug.Log("Second game trap " + Constants.trapDragonMinigame1Points);
             Debug.Log("Second game eat " + Constants.cutRopeMinigame1Points);
             Debug.Log("Third game eat " + Constants.cardsMinigame1Points);
-            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
             pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
+            pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();
             pointsCounter3Text.text = Constants.cardsMinigame1Points.ToString();
         }
+
+        if (SceneParams.gameIdentifier == "TTD2")
+        {
+            Debug.Log("Second game trap " + Constants.trapDragonMinigame2Points);
+            Debug.Log("Second game eat " + Constants.cutRopeMinigame2Points);
+            Debug.Log("Third game eat " + Constants.cardsMinigame2Points);
+            pointsCounter1Text.text = Constants.trapDragonMinigame2Points.ToString();
+            pointsCounter2Text.text = Constants.cutRopeMinigame2Points.ToString();
+            pointsCounter3Text.text = Constants.cardsMinigame2Points.ToString();
+        }
+
+        if (SceneParams.gameIdentifier == "FTD2")
+        {
+            Debug.Log("Second game trap " + Constants.trapDragonMinigame2Points);
+            Debug.Log("Second game eat " + Constants.cutRopeMinigame2Points);
+            Debug.Log("Third game eat " + Constants.cardsMinigame2Points);
+            pointsCounter1Text.text = Constants.trapDragonMinigame2Points.ToString();
+            pointsCounter2Text.text = Constants.cutRopeMinigame2Points.ToString();
+            pointsCounter3Text.text = Constants.cardsMinigame2Points.ToString();
+        }
+
         // Check if the player has earned at least one star in each minigame on level 1
         if (Constants.trapDragonMinigame1Points >= 1 && Constants.trapDragonMinigame2Points >= 1 && Constants.trapDragonMinigame3Points >= 1)
         {

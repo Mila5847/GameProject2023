@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 7c6b1d984544dc447b0865f553a884b4
   - enabled: 1
-    path: Assets/Level2Feed/Level2/Level2.unity
+    path: Assets/Level2Feed/Level2/Level2Feed.unity
     guid: 32422979365fa40489ecb7988d1e4350
   - enabled: 1
     path: Assets/Level2Feed/Level1/Level1Intro.unity
@@ -41,4 +41,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: 751043228bd058144b51269dfb88750b
+  - enabled: 1
+    path: Assets/Level1TrapDragon/Level2Trap/DragonGameSc2.unity
+    guid: 18fe1f67109b4824eb52f51a3c04172b
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Selector unlocked/Level2Status.unity
+    guid: bb0b19187f07fb344b5af8b45ff16846
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory2/MemoryGameMenu2.unity
+    guid: e475e889828754c42b9a99bee286d723
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory2/MemoryGame2.unity
+    guid: 405161fe5a9074c4bb7eacbff958a196
   m_configObjects: {}

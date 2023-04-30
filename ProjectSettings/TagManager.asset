@@ -29,6 +29,7 @@ TagManager:
   - level3
   - points1
   - points2
+  - BackToMenu
   layers:
   - Default
   - TransparentFX

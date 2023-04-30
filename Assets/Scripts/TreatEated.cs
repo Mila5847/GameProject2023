@@ -54,9 +54,10 @@ public class TreatEated : MonoBehaviour
                     Debug.Log("Level 1 and nb points: " + Constants.cutRopeMinigame1Points);
                     loader.LoadSceneWithParams(scoreForMinigame, "FTD1");
                     break;
-                case "Level2":
+                case "Level2Feed":
                     Constants.cutRopeMinigame2Points = scoreForMinigame;
                     Debug.Log("Level 2 and nb points: " + Constants.cutRopeMinigame2Points);
+                    loader.LoadSceneWithParams(scoreForMinigame, "FTD2");
                     break;
                 case "Level3":
                     Constants.cutRopeMinigame3Points = scoreForMinigame;

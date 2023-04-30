@@ -68,8 +68,16 @@ public class Squares2 : MonoBehaviour
             squares[5, 2].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
             squares[5, 4].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
             squares[5, 6].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-
         }
+
+        if (SceneManager.GetActiveScene().name == "DragonGameSc3")
+        {
+            squares[0, 0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[2, 1].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            squares[4, 5].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        }
+
+
 
         // Create the dragon and position it on a random square
         dragon = Instantiate(dragonPrefab, transform);
@@ -172,16 +180,15 @@ public class Squares2 : MonoBehaviour
                                     loader.LoadSceneWithParams(pointCount, "TTD1");
                                     break;
                                 case "DragonGameSc2":
-                                    Constants.cutRopeMinigame1Points = pointCount;
-                                    Debug.Log("Level 2 and nb points: " + Constants.cutRopeMinigame1Points);
+                                    Constants.trapDragonMinigame2Points = pointCount;
+                                    Debug.Log("Level 2 and nb pointsssssssssss: " + Constants.trapDragonMinigame2Points);
                                     loader.LoadSceneWithParams(pointCount, "TTD2");
                                     break;
-                                /*case "":
-                                    StarsManager.trapDragonMinigame3Points = pointCount;
-                                    Debug.Log("Level 3 and nb points " + StarsManager.trapDragonMinigame3Points);
-                                    StarsManager.startTime = 0;
-                                    //SceneManager.LoadScene("Success");
-                                    break;*/
+                                case "DragonGameSc3":
+                                    Constants.trapDragonMinigame3Points = pointCount;
+                                    Debug.Log("Level 2 and nb pointsssssssssss: " + Constants.trapDragonMinigame3Points);
+                                    loader.LoadSceneWithParams(pointCount, "TTD3");
+                                    break;
                                 default:
                                     Debug.Log("Unknown scene: " + currentScene);
                                     break;

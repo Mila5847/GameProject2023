@@ -7,6 +7,33 @@ public class SceneLoader : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    void Start()
+    {
+        string gameIdentifier = SceneParams.gameIdentifier;
+        GameObject backButton = GameObject.FindWithTag("BackToMenu");
+        switch (gameIdentifier)
+        {
+            case "TTD1":
+            case "FTD1":
+            case "MC1":
+                backButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => LoadScene("Level1Status"));
+                break;
+            case "TTD2":
+            case "FTD2":
+            case "MC2":
+                backButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => LoadScene("Level2Status"));
+                break;
+            case "TTD3":
+            case "FTD3":
+            case "MC3":
+                backButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => LoadScene("Level3Status"));
+                break;
+            default:
+                Debug.LogError("Error: Invalid gameIdentifier " + gameIdentifier);
+                break;
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         if(sceneName != null)
@@ -17,11 +44,6 @@ public class SceneLoader : MonoBehaviour
         {
             Debug.Log("Warning: No scene with the name " + sceneName + " found.");
         }
-    }
-
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

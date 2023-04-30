@@ -5,6 +5,7 @@ public class StartMemory : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
+        Debug.Log("Loaded");
         SceneManager.LoadScene(sceneName);
     }
 
