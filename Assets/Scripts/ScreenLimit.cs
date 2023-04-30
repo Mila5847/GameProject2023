@@ -29,7 +29,7 @@ public class ScreenLimit : MonoBehaviour
         }
 
         // Check if the game object is outside the top or bottom screen limits
-        if (pos.y <= bottom)
+        if (pos.y <= bottom || pos.y >= top)
         {
             pos.y = bottom; // Set the position to the bottom limit
             string currentScene = SceneManager.GetActiveScene().name;
@@ -38,38 +38,18 @@ public class ScreenLimit : MonoBehaviour
                 // Save the current level name
                 lastLevelName = "Level1Intro";
             }
-            else if (currentScene == "Level2")
+            else if (currentScene == "Level2Feed")
             {
-                lastLevelName = "Level2";
+                lastLevelName = "Level2Feed";
             }
-            else if (currentScene == "Level3")
+            else if (currentScene == "Level3Feed")
             {
-                lastLevelName = "Level3";
-            }
-            PlayerPrefs.SetString("LastScenePlayed", lastLevelName); // Save the last level played
-            SceneManager.LoadScene("GameOver");
-        }
-        else if (pos.y >= top)
-        {
-            pos.y = top; // Set the position to the top limit
-            string currentScene = SceneManager.GetActiveScene().name;
-            if (currentScene == "Level1")
-            {
-                // Save the current level name
-                lastLevelName = "Level1";
-            }
-            else if (currentScene == "Level2")
-            {
-                lastLevelName = "Level2";
-            }
-            else if (currentScene == "Level3")
-            {
-                lastLevelName = "Level3";
+                lastLevelName = "Level3Feed";
             }
             PlayerPrefs.SetString("LastScenePlayed", lastLevelName); // Save the last level played
             SceneManager.LoadScene("GameOver");
         }
-
+      
         // Update the position of the game object
         transform.position = pos;
     }

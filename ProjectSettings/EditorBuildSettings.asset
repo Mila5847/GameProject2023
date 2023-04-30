@@ -53,4 +53,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MemoryGameScene/Memory2/MemoryGame2.unity
     guid: 405161fe5a9074c4bb7eacbff958a196
+  - enabled: 1
+    path: Assets/Scenes/Level 3 Selector unlocked/Level3Status.unity
+    guid: d61598d6c71d16640ad5d4d22aeb9aa5
+  - enabled: 1
+    path: Assets/Level1TrapDragon/Level3Trap/DragonGameSc3.unity
+    guid: 769e72ce11810f2428befea5b143bb03
+  - enabled: 1
+    path: Assets/Level2Feed/Level3/Level3Feed.unity
+    guid: 967ba8ed14d81ac468ee85958044632b
   m_configObjects: {}

@@ -5865,7 +5865,7 @@ MonoBehaviour:
   - {fileID: 953028067202117817, guid: 5340a450a125a2c44a9c20a60202cf8f, type: 3}
   minDistance: -8
   maxDistance: 8
-  interval: 2
+  interval: 1
 --- !u!4 &1779214126
 Transform:
   m_ObjectHideFlags: 0

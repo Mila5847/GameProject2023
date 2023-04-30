@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public void Replay()
     {
         string lastScenePlayed = PlayerPrefs.GetString("LastScenePlayed"); // Retrieve the last level played
+        Debug.Log("Scene name is: " + lastScenePlayed);
         SceneManager.LoadScene(lastScenePlayed); // Load the last level played
     }
 
