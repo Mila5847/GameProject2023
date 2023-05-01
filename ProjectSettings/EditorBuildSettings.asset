@@ -62,4 +62,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level2Feed/Level3/Level3Feed.unity
     guid: 967ba8ed14d81ac468ee85958044632b
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory3/MemoryGameMenu3.unity
+    guid: e7925aa82ab87a04bbe8f387c4a27bcc
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory3/MemoryGame3.unity
+    guid: bbde3e15092facc448e2f29a29a2f750
   m_configObjects: {}
