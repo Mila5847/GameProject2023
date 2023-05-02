@@ -47,9 +47,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2 Selector unlocked/Level2Status.unity
     guid: bb0b19187f07fb344b5af8b45ff16846
-  - enabled: 1
-    path: Assets/MemoryGameScene/Memory2/MemoryGameMenu2.unity
-    guid: e475e889828754c42b9a99bee286d723
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/MemoryGameScene/Memory2/MemoryGame2.unity
     guid: 405161fe5a9074c4bb7eacbff958a196
@@ -68,4 +68,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MemoryGameScene/Memory3/MemoryGame3.unity
     guid: bbde3e15092facc448e2f29a29a2f750
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 4aff1a701e444484eae330ba9ea3ce1d
+  - enabled: 1
+    path: Assets/MemoryGameScene/Memory2/MemoryGameMenu2.unity
+    guid: 6a65d201aee6aad489ab90e0d5db261d
   m_configObjects: {}
