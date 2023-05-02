@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class LevelTrigger : MonoBehaviour
 {
-    private Dictionary<string, string> levelSceneMap = new Dictionary<string, string>()
-    {
-        { "level1", "Level1Status" },
-        { "level2", "Level2" },
-        { "level3", "Level3" }
-    };
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("in collison");
+        Debug.Log("in trigger");
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
             PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
             PlayerPrefs.SetFloat("playerPositionX", transform.position.x);
             PlayerPrefs.SetFloat("playerPositionY", transform.position.y);
-            //SceneManager.LoadScene("Level1Status");
+            if (Input.GetKey(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Level1Status");
+            }
+            //
 
         }
         if (gameObject.CompareTag("level2"))
