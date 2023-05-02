@@ -24,6 +24,7 @@ public class NavigationPath : MonoBehaviour
         // Composition of the full path
         waypointGameObjects.Add(new PathObject(transform.position, WayPointType.PathWay, null)); // Add new waypoint at player's starting position
         waypointGameObjects.Add(new PathObject(new Vector2(6.42f, -8.84f), WayPointType.Level, 1));
+        waypointGameObjects.Add(new PathObject(new Vector2(6.42f, -8.84f), WayPointType.PathWay, null));
         waypointGameObjects.Add(new PathObject(new Vector2(8.53f, -8.43f), WayPointType.PathWay, null));
         waypointGameObjects.Add(new PathObject(new Vector2(8.34f, -2.67f), WayPointType.Level, 2));
         waypointGameObjects.Add(new PathObject(new Vector2(5.98f, -1.29f), WayPointType.PathWay, null));

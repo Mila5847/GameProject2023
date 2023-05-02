@@ -20,7 +20,7 @@ public class LevelTrigger : MonoBehaviour
             PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
             PlayerPrefs.SetFloat("playerPositionX", transform.position.x);
             PlayerPrefs.SetFloat("playerPositionY", transform.position.y);
-            SceneManager.LoadScene("Level1Status");
+            //SceneManager.LoadScene("Level1Status");
 
         }
         if (gameObject.CompareTag("level2"))
