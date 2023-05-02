@@ -27,22 +27,22 @@ public class AnimationController : MonoBehaviour
 
         if (val_y < 0)//then set direction to 2
         {
-            animator.SetInteger("direction", (int)MoveDirectionPlayer.DOWN);
+            animator.SetInteger("Direction", (int)MoveDirectionPlayer.DOWN);
         }
 
         else if (val_y > 0) //then set direction to 1
         {
-            animator.SetInteger("direction", (int)MoveDirectionPlayer.UP);
+            animator.SetInteger("Direction", (int)MoveDirectionPlayer.UP);
         }
 
         else if (val_x < 0) //then set direction to 3
         {
-            animator.SetInteger("direction", (int)MoveDirectionPlayer.LEFT);
+            animator.SetInteger("Direction", (int)MoveDirectionPlayer.LEFT);
         }
 
         else if (val_x > 0) //then set direction to 4
         {
-            animator.SetInteger("direction", (int)MoveDirectionPlayer.RIGHT);
+            animator.SetInteger("Direction", (int)MoveDirectionPlayer.RIGHT);
         }
 
         else

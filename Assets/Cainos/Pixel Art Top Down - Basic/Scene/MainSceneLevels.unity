@@ -12131,7 +12131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d0e62721e731a47916713e45e4ef50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1622224631}
+  target: {fileID: 2008876320}
   lerpSpeed: 2.5
 --- !u!20 &519420031
 Camera:
@@ -35238,6 +35238,8 @@ GameObject:
   - component: {fileID: 2008876323}
   - component: {fileID: 2008876322}
   - component: {fileID: 2008876321}
+  - component: {fileID: 2008876325}
+  - component: {fileID: 2008876324}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35364,7 +35366,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -35383,7 +35385,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008876317}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -35421,6 +35423,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &2008876324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008876317}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adb9e82c26b4584ca87e56548967420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2008876325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008876317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ffd5a3294e44a419293c58ce34129c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  minX: 0
+  minY: 0
+  maxX: 0
+  maxY: 0
 --- !u!1001 &2014477842
 PrefabInstance:
   m_ObjectHideFlags: 0
