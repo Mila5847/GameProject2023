@@ -20,6 +20,7 @@ public class LevelTrigger : MonoBehaviour
         Debug.Log("in trigger");
         if (Input.GetKeyDown(KeyCode.Return)) { 
         Debug.Log("keydown");
+
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
