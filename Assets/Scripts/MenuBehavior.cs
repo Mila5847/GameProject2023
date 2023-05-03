@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -57,18 +58,24 @@ public class MenuBehavior : MonoBehaviour
 
     public void ShowPauseMenu()
     {
-        Time.timeScale = 0;
-        pauseMenu.enabled = true;
-        optionsMenu.enabled = false;
-        //interrogationMenu.enabled = false;
+       
+            Time.timeScale = 0;
+            pauseMenu.enabled = true;
+            optionsMenu.enabled = false;
+            //interrogationMenu.enabled = false;
+        
+
     }
 
     public void HidePauseMenu()
     {
-        Time.timeScale = 1;
-        pauseMenu.enabled = false;
-        optionsMenu.enabled = false;
-        //interrogationMenu.enabled = false;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Time.timeScale = 1;
+            pauseMenu.enabled = false;
+            optionsMenu.enabled = false;
+            //interrogationMenu.enabled = false;
+        }
     }
 
     public void QuitGame()
