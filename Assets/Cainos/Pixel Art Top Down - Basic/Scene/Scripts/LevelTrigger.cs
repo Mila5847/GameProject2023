@@ -1,39 +1,50 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class LevelTrigger : MonoBehaviour
 {
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
+        
+    }
+
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Player")) {
+            collision.gameObject.GetComponent<Rigidbody2D>().WakeUp();
         Debug.Log("in trigger");
+        if (Input.GetKeyDown(KeyCode.Return)) { 
+        Debug.Log("keydown");
         if (gameObject.CompareTag("level1"))
         {
             Debug.Log("level 1");
             PlayerPrefs.SetString("previousScene", SceneManager.GetActiveScene().name);
             PlayerPrefs.SetFloat("playerPositionX", transform.position.x);
             PlayerPrefs.SetFloat("playerPositionY", transform.position.y);
-            if (Input.GetKey(KeyCode.Space))
-            {
-                SceneManager.LoadScene("Level1Status");
-            }
-            //
-
+            SceneManager.LoadScene("Level1Status");
+           
         }
-        if (gameObject.CompareTag("level2"))
+        else if (gameObject.CompareTag("level2"))
         {
             Debug.Log("level 2");
-            //SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level2Status");
 
         }
-        if (gameObject.CompareTag("level3"))
+        else if (gameObject.CompareTag("level3"))
         {
             Debug.Log("level 3");
-            //SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level3Status");
 
         }
+        }
+        }
     }
+ 
 
     public void BackToGame()
     {
