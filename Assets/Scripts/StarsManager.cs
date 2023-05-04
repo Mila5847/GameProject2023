@@ -17,31 +17,35 @@ public class StarsManager : MonoBehaviour
     private void Start()
     {
         int lvl1 = Constants.cutRopeMinigame1Points + Constants.cardsMinigame1Points + Constants.trapDragonMinigame1Points;
-        if (lvl1 > 3)
+        if (lvl1 >= 3)
             Constants.isLevel2Unlocked = true;
 
         int lvl2 = Constants.cutRopeMinigame2Points + Constants.cardsMinigame2Points + Constants.trapDragonMinigame2Points;
-        if (lvl2 > 6)
+
+
+        if (lvl2 >= 6)
             Constants.isLevel3Unlocked = true;
-//        int lvl3 = Constants.cutRopeMinigame3Points + Constants.cardsMinigame3Points + Constants.trapDragonMinigame3Points;
+
+
+        //        int lvl3 = Constants.cutRopeMinigame3Points + Constants.cardsMinigame3Points + Constants.trapDragonMinigame3Points;
     }
 
     void Update()
     {
-
-        if (Constants.isLevel3Unlocked && SceneManager.GetActiveScene().name == "Level3Status")
+        Debug.Log("Star manager : " + SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name.Equals("Level3Status") && Constants.isLevel3Unlocked)
         {
             pointsCounter1Text.text = Constants.trapDragonMinigame3Points.ToString();
             pointsCounter2Text.text = Constants.cutRopeMinigame3Points.ToString();
             pointsCounter3Text.text = Constants.cardsMinigame3Points.ToString();
         }
-        else if (Constants.isLevel2Unlocked && SceneManager.GetActiveScene().name == "Level2Status")
+        else if (SceneManager.GetActiveScene().name.Equals("Level2Status") && Constants.isLevel2Unlocked)
         {
             pointsCounter1Text.text = Constants.trapDragonMinigame2Points.ToString();
             pointsCounter2Text.text = Constants.cutRopeMinigame2Points.ToString();
             pointsCounter3Text.text = Constants.cardsMinigame2Points.ToString();
         }
-        else if(SceneManager.GetActiveScene().name == "Level1Status")
+        else if (SceneManager.GetActiveScene().name.Equals("Level1Status"))
         {
             pointsCounter1Text.text = Constants.trapDragonMinigame1Points.ToString();
             pointsCounter2Text.text = Constants.cutRopeMinigame1Points.ToString();

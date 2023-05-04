@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class Constants {
+public static class Constants
+{
     public static float startTime = 0;
     public static float duration = 0;
 
@@ -28,4 +29,7 @@ public static class Constants {
     public static Text pointsCounter1;
     public static Text pointsCounter2;
     //public Text pointsCounter3;
+
+
+    public static List<PathObject> waypointGameObjects = new List<PathObject>();
 }
