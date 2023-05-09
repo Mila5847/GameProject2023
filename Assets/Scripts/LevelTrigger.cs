@@ -17,9 +17,9 @@ public class LevelTrigger : MonoBehaviour
 
         if (collision.CompareTag("Player")) {
             collision.gameObject.GetComponent<Rigidbody2D>().WakeUp();
-        Debug.Log("in trigger");
+        //Debug.Log("in trigger");
         if (Input.GetKeyDown(KeyCode.Return)) { 
-        Debug.Log("keydown");
+        //Debug.Log("keydown");
 
         if (gameObject.CompareTag("level1"))
         {
@@ -32,18 +32,30 @@ public class LevelTrigger : MonoBehaviour
         }
         else if (gameObject.CompareTag("level2"))
         {
-            Debug.Log("level 2");
-            SceneManager.LoadScene("Level2Status");
-
+                    //Debug.Log("level 2");
+           if (Constants.isLevel2Unlocked == true)
+              {
+               SceneManager.LoadScene("Level2Status");
+              }
+           else
+              {
+               SceneManager.LoadScene("LevelLocked");
+              }
         }
         else if (gameObject.CompareTag("level3"))
         {
-            Debug.Log("level 3");
-            SceneManager.LoadScene("Level3Status");
-
+                    //Debug.Log("level 2");
+            if (Constants.isLevel3Unlocked == true)
+            {
+               SceneManager.LoadScene("Level3Status");
+            }
+            else
+            {
+               SceneManager.LoadScene("LevelLocked");
+            }
         }
-        }
-        }
+    }
+}
     }
  
 

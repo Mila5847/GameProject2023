@@ -17,7 +17,7 @@ public class StarsManager : MonoBehaviour
     private void Start()
     {
         int lvl1 = Constants.cutRopeMinigame1Points + Constants.cardsMinigame1Points + Constants.trapDragonMinigame1Points;
-        if (lvl1 >= 3)
+        if (lvl1 >= 3) 
             Constants.isLevel2Unlocked = true;
 
         int lvl2 = Constants.cutRopeMinigame2Points + Constants.cardsMinigame2Points + Constants.trapDragonMinigame2Points;
