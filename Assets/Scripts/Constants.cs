@@ -24,6 +24,10 @@ public static class Constants
     public static int cardsMinigame2Points = 0;
     public static int cardsMinigame3Points = 0;
 
+    public static int totalPointsLevel1 = 0;
+    public static int totalPointsLevel2 = 0;
+    public static int totalPointsLevel3 = 0;
+
     public static int currentScore = 0;
 
     public static Text pointsCounter1;
