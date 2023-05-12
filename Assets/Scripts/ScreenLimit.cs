@@ -38,23 +38,26 @@ public class ScreenLimit : MonoBehaviour
                 // Save the current level name
                 lastLevelName = "Level1Intro";
                 SceneParams.gameIdentifier = "FTD1";
+                Debug.Log("LAST SCENE PLAYED IS " + lastLevelName);
+                PlayerPrefs.SetString("LastScenePlayed", lastLevelName);
             }
             else if (currentScene == "Level2Feed")
             {
                 lastLevelName = "Level2Feed";
                 SceneParams.gameIdentifier = "FTD2";
+                PlayerPrefs.SetString("LastScenePlayed", lastLevelName);
+                Debug.Log("LAST SCENE PLAYED IS " + lastLevelName);
             }
             else if (currentScene == "Level3Feed")
             {
                 lastLevelName = "Level3Feed";
-                SceneParams.gameIdentifier = "FTD3";
+                SceneParams.gameIdentifier = "FTD3"; PlayerPrefs.SetString("LastScenePlayed", lastLevelName);
+                Debug.Log("LAST SCENE PLAYED IS " + lastLevelName);
             }
             else
             {
                 Debug.Log("No scene found");
             }
-            PlayerPrefs.SetString("LastScenePlayed", lastLevelName); // Save the last level played
-            Debug.Log(lastLevelName);
             SceneManager.LoadScene("GameOver");
         }
       

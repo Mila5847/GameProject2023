@@ -38,14 +38,5 @@ public class GameOver : MonoBehaviour
                 Debug.LogError("Error: Invalid gameIdentifier " + gameIdentifier);
                 break;
         }
-
-       /* if (sceneName != null)
-        {
-            SceneManager.LoadScene(sceneName);
-        }
-        else
-        {
-            Debug.Log("Warning: No scene with the name " + sceneName + " found.");
-        }*/
     }
 }

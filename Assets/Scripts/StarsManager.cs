@@ -32,7 +32,6 @@ public class StarsManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Star manager : " + SceneManager.GetActiveScene().name);
         if (SceneManager.GetActiveScene().name.Equals("Level3Status") && Constants.isLevel3Unlocked)
         {
             pointsCounter1Text.text = Constants.trapDragonMinigame3Points.ToString();
