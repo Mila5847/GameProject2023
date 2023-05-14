@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MenuBehavior : MonoBehaviour
 {
+    private float originalVolume;
+    
     [SerializeField]
     private Canvas pauseMenu;
 
@@ -23,6 +25,7 @@ public class MenuBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         pauseMenu.enabled = false;
         optionsMenu.enabled = false;
        // interrogationMenu.enabled = false;
@@ -82,4 +85,34 @@ public class MenuBehavior : MonoBehaviour
     {
         SceneManager.LoadScene("MainSceneLevels");
     }
+
+    public void Mute()
+    {
+        if (mute.isOn)
+        {
+            
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = originalVolume;
+        }
+
+    }
+
+    public void showOptionsMenu()
+    {
+        Time.timeScale = 0;
+        optionsMenu.enabled = true;
+
+    }
+
+    public void HideOptionsMenu()
+    {
+        Time.timeScale = 1;
+        optionsMenu.enabled = false;
+
+    }
+
+
 }
