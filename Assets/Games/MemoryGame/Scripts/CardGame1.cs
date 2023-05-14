@@ -1,8 +1,11 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class CardGame1 : MonoBehaviour
@@ -13,6 +16,12 @@ public class CardGame1 : MonoBehaviour
     List<GameObject> cardSprites;
     private bool show = false;
     private bool isInvoked = false;
+
+    [SerializeField]
+    Text cardTextCounter;
+
+    [SerializeField]
+    private int timeForLevel = 30;
 
     private int seconds = 1;
 
@@ -27,9 +36,14 @@ public class CardGame1 : MonoBehaviour
     private LoadSceneWithParameters loader;
 
     public Dictionary<ulong, int> cardWithValue = new Dictionary<ulong, int>();
+
+
+
+    Boolean gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Countdown());
         loader = new LoadSceneWithParameters();
         Random randObj = new Random();
         bool found;
@@ -83,86 +97,87 @@ public class CardGame1 : MonoBehaviour
     void Update()
     {
 
-
-        if (GameObject.FindGameObjectsWithTag("Card").ToList().Count <= 0)
+        if (!gameOver)
         {
-            Debug.Log("The level is done !");
-            if (missedMatches >= 3)
+            if (GameObject.FindGameObjectsWithTag("Card").ToList().Count <= 0)
             {
-                pointCount = 1;
-            }
-            if (missedMatches == 2)
-            {
-                pointCount = 2;
-            }
-            if (missedMatches < 2)
-            {
-                pointCount = 3;
-            }
-          
-            string currentScene = SceneManager.GetActiveScene().name;
-            Debug.Log("Scene " + currentScene);
-
-            switch (currentScene)
-            {
-                case "MemoryGame1":
-                    Constants.cardsMinigame1Points = pointCount;
-                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame1Points);
-                    loader.LoadSceneWithParams(pointCount, "MC1");
-                    break;
-                case "MemoryGame2":
-                    Constants.cardsMinigame2Points = pointCount;
-                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame2Points);
-                    loader.LoadSceneWithParams(pointCount, "MC2");
-                    break;
-                case "MemoryGame3":
-                    Constants.cardsMinigame3Points = pointCount;
-                    Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame3Points);
-                    loader.LoadSceneWithParams(pointCount, "MC3");
-                    break;
-                default:
-                    Debug.Log("Unknown scene: " + currentScene);
-                    break;
-            }
-      
-        }
-
-
-        if (Input.GetMouseButtonDown((int)MouseButton.Left) && !isInvoked)
-        {
-
-            Vector3 cardRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D clickedCard = Physics2D.Raycast(cardRay, Vector2.zero);
-
-            if (clickedCard.transform.gameObject != null && clickedCard.transform.gameObject.CompareTag("Card"))
-            {
-                Debug.Log(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
-
-                clickedCard.transform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-                if (!firstCard)
+                Debug.Log("The level is done !");
+                if (missedMatches >= 3)
                 {
-                    cardValues.Push(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
-                    selectedCards.Push(clickedCard.transform.gameObject);
-                    firstCard = true;
+                    pointCount = 1;
                 }
-                else if (firstCard)
+                if (missedMatches == 2)
                 {
-                    cardValues.Push(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
-                    selectedCards.Push(clickedCard.transform.gameObject);
+                    pointCount = 2;
+                }
+                if (missedMatches < 2)
+                {
+                    pointCount = 3;
+                }
 
-                    isInvoked = true;
-                    Invoke("CheckCards", seconds);
+                string currentScene = SceneManager.GetActiveScene().name;
+                Debug.Log("Scene " + currentScene);
 
-
+                switch (currentScene)
+                {
+                    case "MemoryGame1":
+                        Constants.cardsMinigame1Points = pointCount;
+                        Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame1Points);
+                        loader.LoadSceneWithParams(pointCount, "MC1");
+                        break;
+                    case "MemoryGame2":
+                        Constants.cardsMinigame2Points = pointCount;
+                        Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame2Points);
+                        loader.LoadSceneWithParams(pointCount, "MC2");
+                        break;
+                    case "MemoryGame3":
+                        Constants.cardsMinigame3Points = pointCount;
+                        Debug.Log("Level 1 and nb points: " + Constants.cardsMinigame3Points);
+                        loader.LoadSceneWithParams(pointCount, "MC3");
+                        break;
+                    default:
+                        Debug.Log("Unknown scene: " + currentScene);
+                        break;
                 }
 
             }
 
 
+            if (Input.GetMouseButtonDown((int)MouseButton.Left) && !isInvoked)
+            {
 
+                Vector3 cardRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D clickedCard = Physics2D.Raycast(cardRay, Vector2.zero);
+
+                if (clickedCard.transform.gameObject != null && clickedCard.transform.gameObject.CompareTag("Card"))
+                {
+                    Debug.Log(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
+
+                    clickedCard.transform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+                    if (!firstCard)
+                    {
+                        cardValues.Push(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
+                        selectedCards.Push(clickedCard.transform.gameObject);
+                        firstCard = true;
+                    }
+                    else if (firstCard)
+                    {
+                        cardValues.Push(cardWithValue[(ulong)clickedCard.transform.gameObject.GetInstanceID()]);
+                        selectedCards.Push(clickedCard.transform.gameObject);
+
+                        isInvoked = true;
+                        Invoke("CheckCards", seconds);
+
+
+                    }
+
+                }
+
+
+
+            }
         }
-
     }
 
 
@@ -201,7 +216,22 @@ public class CardGame1 : MonoBehaviour
     }
 
 
+    private IEnumerator Countdown()
+    {
+        while (timeForLevel > 0)
+        {
+            timeForLevel--;
+            cardTextCounter.text = $"Time remaining : {timeForLevel}";
+            yield return new WaitForSecondsRealtime(1);
+        }
+        gameOver = true;
+        Debug.Log("Game over ");
+        //Make canvas appear here
+        cardTextCounter.alignment = TextAnchor.MiddleRight;
+        cardTextCounter.text = $"You lose, ESC to Retry!";
 
+        yield return null;
+    }
 
 
 }
