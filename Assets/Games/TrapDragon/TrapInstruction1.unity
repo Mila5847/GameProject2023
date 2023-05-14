@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "+ Trap the dragon to help alex get closer\n + Click on tiles to block
     the dragon\n  + The dragon must be FULLY surrounded \n    + You have limited
-    rocks to watch you moves"
+    rocks so watch you moves"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
