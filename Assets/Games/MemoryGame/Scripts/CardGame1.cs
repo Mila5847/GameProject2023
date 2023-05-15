@@ -228,7 +228,7 @@ public class CardGame1 : MonoBehaviour
         Debug.Log("Game over ");
         //Make canvas appear here
         cardTextCounter.alignment = TextAnchor.MiddleCenter;
-        cardTextCounter.text = $"You lose, Press ESC to Retry!";
+        cardTextCounter.text = $"You lose, Press SPACE to Retry!";
 
         yield return null;
     }
